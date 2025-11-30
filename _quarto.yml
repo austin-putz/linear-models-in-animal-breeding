@@ -1,0 +1,135 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Animal Models: A Graduate Introduction to Mixed Model Equations"
+  subtitle: "From Hand Calculations to Genomic Prediction"
+  author: "Austin Putz"
+  date: today
+
+  reader-mode: true
+  repo-url: https://github.com/austinputz/animal-models-book
+  repo-actions: [edit, issue]
+  search: true
+  page-navigation: true
+
+  chapters:
+    - index.qmd
+
+    - part: "Part I: Foundations"
+      chapters:
+        - chapters/01-introduction.qmd
+        - chapters/02-mme-primer.qmd
+        - chapters/03-relationships.qmd
+
+    - part: "Part II: Core Animal Models"
+      chapters:
+        - chapters/04-sire-model.qmd
+        - chapters/05-animal-model.qmd
+        - chapters/06-repeatability.qmd
+        - chapters/07-maternal-effects.qmd
+
+    - part: "Part III: Multi-trait and Longitudinal Models"
+      chapters:
+        - chapters/08-multi-trait.qmd
+        - chapters/09-test-day-models.qmd
+        - chapters/10-random-regression.qmd
+        - chapters/11-reaction-norms.qmd
+
+    - part: "Part IV: Categorical and Threshold Models"
+      chapters:
+        - chapters/12-threshold-models.qmd
+        - chapters/13-survival-traits.qmd
+
+    - part: "Part V: Genomic Prediction"
+      chapters:
+        - chapters/14-genomic-relationships.qmd
+        - chapters/15-gblup.qmd
+        - chapters/16-single-step.qmd
+        - chapters/17-bayesian-alphabet.qmd
+
+    - part: "Part VI: Estimation and Computing"
+      chapters:
+        - chapters/18-variance-components.qmd
+        - chapters/19-variance-bayesian-aireml.qmd
+        - chapters/20-model-comparison-computing.qmd
+
+    - part: "Appendices"
+      chapters:
+        - appendices/A-notation-reference.qmd
+        - appendices/B-matrix-operations.qmd
+        - appendices/C-r-code-reference.qmd
+        - appendices/D-blupf90-guide.qmd
+        - appendices/E-datasets.qmd
+        - appendices/F-solutions.qmd
+
+    - references.qmd
+
+  page-footer:
+    left: "Copyright 2025, Austin Putz"
+    right:
+      - icon: github
+        href: https://github.com/austinputz/animal-models-book
+      - text: "License: CC BY-NC-SA 4.0"
+
+bibliography: references.bib
+csl: genetics.csl
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: styles/custom.css
+    code-fold: true
+    code-summary: "Show code"
+    code-tools: true
+    code-copy: true
+    code-overflow: wrap
+    code-line-numbers: false
+    toc: true
+    toc-depth: 3
+    toc-expand: 2
+    number-sections: true
+    number-depth: 3
+    link-external-newwindow: true
+    link-external-icon: true
+    citations-hover: true
+    footnotes-hover: true
+    fig-width: 8
+    fig-height: 6
+    fig-dpi: 300
+    df-print: kable
+    html-math-method: katex
+    callout-appearance: default
+    callout-icon: true
+
+  pdf:
+    documentclass: book
+    classoption: [oneside, openany]
+    geometry: margin=1in
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    number-depth: 3
+    code-line-numbers: true
+    highlight-style: github
+    keep-tex: false
+
+execute:
+  freeze: auto
+  cache: true
+  warning: false
+  message: false
+  echo: true
+
+knitr:
+  opts_chunk:
+    comment: "#>"
+    collapse: true
+    fig.align: "center"
+    out.width: "80%"
+    dpi: 300
+
+editor: visual

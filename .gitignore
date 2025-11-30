@@ -1,0 +1,54 @@
+# Quarto
+/.quarto/
+/_book/
+/_freeze/
+/.cache/
+*.html
+
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Data-raw intermediate files (keep scripts, ignore outputs)
+data-raw/*.rds
+data-raw/*.tmp
+data-raw/*.Rdata
+
+# System
+.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Temporary files
+*.log
+*.aux
+*.out
+*.toc
+*.bbl
+*.blg
+
+# LaTeX
+*.tex
+*.pdf
+!manuscript.pdf
+
+# Python (if used)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Node (if used)
+node_modules/
+package-lock.json

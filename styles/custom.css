@@ -1,0 +1,217 @@
+/* ============================================
+   Custom styles for Animal Models book
+   ============================================ */
+
+/* Equation blocks: add subtle background */
+.equation-container {
+  background-color: #f8f9fa;
+  border-left: 3px solid #007bff;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+/* Symbol definition lists after equations */
+.symbol-list {
+  margin-top: 10px;
+  padding-left: 20px;
+  font-size: 0.95em;
+  line-height: 1.7;
+}
+
+/* Code blocks: adjust folding button */
+.code-fold-btn {
+  font-size: 0.85em;
+  color: #6c757d;
+}
+
+/* Tables: zebra striping and hover */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+table tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+}
+
+table td {
+  padding: 8px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Callout styling enhancements */
+.callout {
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.callout-tip {
+  border-left: 4px solid #28a745;
+  background-color: #d4edda;
+}
+
+.callout-tip .callout-header {
+  color: #155724;
+}
+
+.callout-note {
+  border-left: 4px solid #17a2b8;
+  background-color: #d1ecf1;
+}
+
+.callout-note .callout-header {
+  color: #0c5460;
+}
+
+.callout-important {
+  border-left: 4px solid #ffc107;
+  background-color: #fff3cd;
+}
+
+.callout-important .callout-header {
+  color: #856404;
+}
+
+.callout-warning {
+  border-left: 4px solid #dc3545;
+  background-color: #f8d7da;
+}
+
+.callout-warning .callout-header {
+  color: #721c24;
+}
+
+/* Chapter headings */
+h1 {
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  margin-top: 40px;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+
+h3 {
+  margin-top: 25px;
+  margin-bottom: 15px;
+  color: #495057;
+}
+
+/* Figure captions */
+figcaption {
+  font-style: italic;
+  text-align: center;
+  color: #6c757d;
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+/* Code output */
+pre {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 10px;
+  overflow-x: auto;
+}
+
+code {
+  background-color: #f8f9fa;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* Inline math */
+.math.inline {
+  font-size: 1em;
+}
+
+/* Display math */
+.math.display {
+  margin: 1.5em 0;
+  padding: 1em;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+/* Links */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Sidebar styling */
+.sidebar-title {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+}
+
+/* TOC styling */
+.sidebar nav[role="doc-toc"] ul {
+  padding-left: 0;
+}
+
+.sidebar nav[role="doc-toc"] li {
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+/* Footer */
+.page-footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #dee2e6;
+  font-size: 0.9em;
+  color: #6c757d;
+}
+
+/* Practice exercise boxes */
+.practice-box {
+  background-color: #e7f3ff;
+  border-left: 4px solid #007bff;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  table {
+    font-size: 0.9em;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  .callout {
+    padding: 10px;
+  }
+}

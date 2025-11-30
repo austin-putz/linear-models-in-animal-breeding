@@ -1,0 +1,90 @@
+# Welcome {.unnumbered}
+
+Welcome to **Animal Models: A Graduate Introduction to Mixed Model Equations in Breeding and Genetics**.
+
+## About This Book
+
+This book provides a hands-on, example-driven introduction to mixed model equations for graduate students in animal breeding and genetics. Each chapter starts with small datasets (5-10 animals), demonstrates hand calculations step-by-step, and then scales up to realistic applications using R.
+
+## Learning Approach
+
+Our pedagogical philosophy emphasizes:
+
+- **Start Small**: Every model begins with a toy dataset you can solve by hand to build intuition
+- **Show Your Work**: Step-by-step derivations with every symbol defined and dimensions clearly stated
+- **Code Included**: R implementations are provided (hidden by default, click "Show code" to reveal)
+- **Practice Exercises**: Callouts throughout with extensions and practice problems
+
+## What You'll Learn
+
+By working through this book, you will:
+
+- Understand the theory and practice of mixed model equations (MME)
+- Master pedigree-based relationship matrices and their inverses
+- Implement animal models for single and multiple traits
+- Model longitudinal data with random regressions and reaction norms
+- Apply genomic prediction methods (GBLUP, ssGBLUP, Bayesian alphabet)
+- Estimate variance components using ANOVA, REML, AI-REML, and Bayesian methods
+- Handle categorical traits with threshold models
+- Optimize computations for large-scale genetic evaluations
+
+## Prerequisites
+
+Students using this book should have:
+
+- Basic linear algebra (matrix multiplication, inversion, eigenvalues)
+- Elementary statistics (linear regression, variance components, distributions)
+- R programming experience (helpful but not strictly required - all code is explained)
+
+## Book Structure
+
+The book is organized into six parts:
+
+- **Part I (Chapters 1-3)**: Foundations - introduction, MME basics, and relationship matrices
+- **Part II (Chapters 4-7)**: Core animal models - sire model, animal model, repeatability, maternal effects
+- **Part III (Chapters 8-11)**: Multi-trait and longitudinal models - correlated traits, test-day, random regression, reaction norms
+- **Part IV (Chapters 12-13)**: Categorical traits - threshold models and survival analysis
+- **Part V (Chapters 14-17)**: Genomic prediction - G matrix, GBLUP, ssGBLUP, Bayesian methods
+- **Part VI (Chapters 18-20)**: Variance estimation and computing - REML, AI-REML, Bayesian, model comparison, computational strategies
+
+Six appendices provide reference material on notation, matrix operations, R code, BLUPF90, datasets, and solutions to practice exercises.
+
+## How to Navigate
+
+Chapters 1-3 form the essential foundation and should be read first. After that, you can follow different paths depending on your interests:
+
+- **Linear path** (comprehensive): Read chapters sequentially
+- **Genomics-focused**: Ch 1-3, 5, 8, 14-17, 18, 20
+- **Longitudinal models**: Ch 1-3, 5-6, 9-11, 19
+
+See Chapter 1 for a detailed dependency graph showing prerequisites for each chapter.
+
+## Using This Book
+
+All code chunks are collapsed by default to keep focus on concepts and mathematics. Click the "Show code" button on any chunk to see the R implementation. The "Code" menu in the top-right provides options to show all code at once or download source files.
+
+Datasets referenced in examples are available in the `data/` directory of the [book repository](https://github.com/austinputz/animal-models-book).
+
+## Citation
+
+If you use this book in your research or teaching, please cite as:
+
+> Putz, Austin (2025). *Animal Models: A Graduate Introduction to Mixed Model Equations in Breeding and Genetics*. https://austinputz.github.io/animal-models-book/
+
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+
+This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/). You are free to share and adapt this material for non-commercial purposes, provided you give appropriate credit and distribute your contributions under the same license.
+
+## Feedback and Contributions
+
+Found a typo, error, or have a suggestion? Please [open an issue](https://github.com/austinputz/animal-models-book/issues) on GitHub or submit a pull request. This book benefits from community input and we welcome contributions.
+
+## Acknowledgments
+
+This book has been developed with support from [Your Institution/Funding]. Special thanks to the students who provided feedback on early drafts and to the open-source community for the excellent tools (Quarto, R, tidyverse) that made this book possible.
+
+---
+
+Ready to begin? Start with [Chapter 1: Introduction to Animal Models](chapters/01-introduction.qmd).
