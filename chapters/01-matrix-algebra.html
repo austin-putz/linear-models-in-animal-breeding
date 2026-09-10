@@ -1886,9 +1886,9 @@ Table&nbsp;1.1: Example A — four lambs, two flocks.
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>time_invert <span class="ot">&lt;-</span> <span class="fu">system.time</span>(<span class="fu">solve</span>(big_A) <span class="sc">%*%</span> big_b)</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>time_solve[[<span class="st">"elapsed"</span>]]     <span class="co"># solve(A, b)</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.006</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.005</span></span>
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>time_invert[[<span class="st">"elapsed"</span>]]    <span class="co"># solve(A) %*% b</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.014</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.013</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="partitioned-matrices" class="level3" data-number="1.9.4">
