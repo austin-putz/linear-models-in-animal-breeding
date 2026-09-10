@@ -198,6 +198,91 @@ text, so nothing is lost if you skip them or are reading in print.
 Datasets referenced in examples are available in the `data/` directory of the
 [book repository](https://github.com/austin-putz/linear-models-in-animal-breeding).
 
+## Getting set up in R
+
+The book is written to be read with an R session open beside it. Everything you need is free, and
+the whole setup takes about ten minutes.
+
+### 1. Install R
+
+R itself comes from **CRAN**, the Comprehensive R Archive Network:
+
+- **<https://cran.r-project.org/>** — choose your platform (Windows, macOS, or Linux) and take the
+  latest release
+
+Any version from **4.3 onward** will run everything in this book. To check what you have, open R
+and run:
+
+``` r
+R.version.string
+```
+
+### 2. Install an editor
+
+R on its own is a bare console. You want an editor that keeps your script, your console, your
+plots and your data in one window:
+
+- **[RStudio Desktop](https://posit.co/download/rstudio-desktop/)** — free, the standard choice,
+  and what most course material assumes
+- **[Positron](https://positron.posit.co/)** — Posit's newer editor, if you also work in Python
+- **[VS Code](https://code.visualstudio.com/)** with the R extension, if you already live there
+
+Install R *first*, then the editor: the editor looks for an existing R installation when it starts.
+
+### 3. Install the packages
+
+**Chapter 1 needs nothing at all.** `Matrix`, `MASS` and `survival` are *recommended* packages —
+they ship with every standard R installation, so the whole of the matrix algebra chapter runs on a
+fresh install with no downloads.
+
+Later chapters use a handful of specialist packages. Install them when you reach them, or all at
+once now:
+
+``` r
+install.packages(c(
+  "lme4",         # general mixed models (Ch 3)
+  "pedigreemm",   # pedigree-based mixed models (Ch 4, Ch 5)
+  "nadiv",        # relationship matrices and their inverses (Ch 4, Ch 16)
+  "sommer",       # REML for animal models, multi-trait (Ch 10, Ch 11, Ch 21)
+  "MCMCglmm",     # Bayesian mixed models via MCMC (Ch 14, Ch 22)
+  "coda",         # MCMC convergence diagnostics (Ch 22)
+  "coxme",        # survival models with random effects (Ch 15)
+  "orthopolynom", # Legendre polynomials (Ch 12)
+  "tidyverse"     # data preparation and validation (Ch 5, Ch 23)
+))
+```
+
+Two of these — `sommer` and `MCMCglmm` — compile from source on some systems and can take several
+minutes each. That is normal; let them finish.
+
+To check that a package installed correctly, load it:
+
+``` r
+library(sommer)
+```
+
+If that returns a prompt with no error, you are set.
+
+### 4. Running the book's code
+
+Every code chunk in this book is **shown, not hidden**, because the code is part of what is being
+taught rather than an appendix to it. Three ways to get it:
+
+- **Copy one chunk.** Hover over any code block and a copy button appears in its top-right corner.
+- **Take a whole chapter.** The `</> Code` menu at the top right of each page will show or hide
+  every chunk at once, or download that chapter's source.
+- **Clone the whole book.** If you want the datasets and the generating scripts as well:
+
+``` bash
+git clone https://github.com/austin-putz/linear-models-in-animal-breeding.git
+```
+
+Then, from the project directory, `Rscript setup.R` installs the full package list in one go.
+
+Work down the page rather than skipping to the end of a section: each chunk prints the same number
+the hand calculation above it produced, and comparing the two is the point of having the code
+there at all.
+
 ## Citation
 
 If you use this book in your research or teaching, please cite as:

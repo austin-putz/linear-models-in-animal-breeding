@@ -1,11 +1,11 @@
 #!/usr/bin/env Rscript
 
 # ============================================
-# Setup script for Animal Models book
+# Setup script for Linear Models in Animal Breeding
 # Installs all required R packages
 # ============================================
 
-cat("Installing R packages for Animal Models book...\n\n")
+cat("Installing R packages for Linear Models in Animal Breeding...\n\n")
 
 # List of required CRAN packages
 cran_packages <- c(
