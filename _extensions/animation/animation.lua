@@ -13,7 +13,7 @@
   figure. Unusable for a book that ships a PDF.
 --]]
 
-local BOOK_URL = "https://austin-putz.github.io/animal-models-book"
+local BOOK_URL = "https://austin-putz.github.io/linear-models-in-animal-breeding"
 
 -- Paths in raw HTML are not rewritten by Quarto, so a chapter in chapters/
 -- must reach up to the project root itself. quarto.project.offset is that

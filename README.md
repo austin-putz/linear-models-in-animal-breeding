@@ -1,6 +1,6 @@
 # Linear Models in Animal Breeding: A Worked Approach
 
-[![Render and Deploy](https://github.com/austin-putz/animal-models-book/actions/workflows/quarto-publish.yml/badge.svg)](https://github.com/austin-putz/animal-models-book/actions/workflows/quarto-publish.yml)
+[![Render and Deploy](https://github.com/austin-putz/linear-models-in-animal-breeding/actions/workflows/quarto-publish.yml/badge.svg)](https://github.com/austin-putz/linear-models-in-animal-breeding/actions/workflows/quarto-publish.yml)
 
 A graduate textbook on the pedigree-based mixed model, written so that every result is worked on
 real numbers before it is written as a formula. Each chapter opens with a dataset small enough to
@@ -12,7 +12,7 @@ companion volume.
 
 ## Book URL
 
-**Read the book online**: https://austin-putz.github.io/animal-models-book/
+**Read the book online**: https://austin-putz.github.io/linear-models-in-animal-breeding/
 
 ## About This Book
 
@@ -54,8 +54,8 @@ The full chapter outline, including per-chapter objectives, sections, and datase
 
 1. **Clone this repository**:
    ```bash
-   git clone https://github.com/austin-putz/animal-models-book.git
-   cd animal-models-book
+   git clone https://github.com/austin-putz/linear-models-in-animal-breeding.git
+   cd linear-models-in-animal-breeding
    ```
 
 2. **Install required R packages**:
@@ -102,7 +102,7 @@ quarto preview chapters/01-matrix-algebra.qmd
 ## Project Structure
 
 ```
-animal-models-book/
+linear-models-in-animal-breeding/
 ├── _quarto.yml              # Book configuration
 ├── CHAPTERS.md              # Chapter outline (source of truth for structure)
 ├── CLAUDE.md                # Scope, conventions, and authoring rules
@@ -128,9 +128,9 @@ animal-models-book/
 
 Contributions are welcome! If you find a typo, error, or have a suggestion:
 
-1. **Report an issue**: [Open an issue](https://github.com/austin-putz/animal-models-book/issues)
+1. **Report an issue**: [Open an issue](https://github.com/austin-putz/linear-models-in-animal-breeding/issues)
 2. **Submit a fix**: Fork the repository, make your changes, and submit a pull request
-3. **Discuss improvements**: Start a discussion in the [Discussions tab](https://github.com/austin-putz/animal-models-book/discussions)
+3. **Discuss improvements**: Start a discussion in the [Discussions tab](https://github.com/austin-putz/linear-models-in-animal-breeding/discussions)
 
 Please ensure your contributions maintain the book's pedagogical style:
 - Start with small, hand-calculable examples
@@ -146,7 +146,7 @@ If you use this book in your research or teaching, please cite as:
 
 ```
 Putz, Austin (2025). Linear Models in Animal Breeding: A Worked Approach
-  in Breeding and Genetics. https://austin-putz.github.io/animal-models-book/
+  in Breeding and Genetics. https://austin-putz.github.io/linear-models-in-animal-breeding/
 ```
 
 BibTeX:
@@ -155,7 +155,7 @@ BibTeX:
   title={Linear Models in Animal Breeding: A Worked Approach},
   author={Putz, Austin},
   year={2025},
-  url={https://austin-putz.github.io/animal-models-book/},
+  url={https://austin-putz.github.io/linear-models-in-animal-breeding/},
   note={Online book}
 }
 ```
@@ -187,6 +187,6 @@ Special thanks to the open-source community and to students who provided feedbac
 
 ## Contact
 
-For questions about the book content, please [open an issue](https://github.com/austin-putz/animal-models-book/issues).
+For questions about the book content, please [open an issue](https://github.com/austin-putz/linear-models-in-animal-breeding/issues).
 
 For other inquiries, contact Austin Putz via GitHub.

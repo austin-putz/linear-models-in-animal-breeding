@@ -196,13 +196,13 @@ steps. They are never the only place something is explained: everything in a cli
 text, so nothing is lost if you skip them or are reading in print.
 
 Datasets referenced in examples are available in the `data/` directory of the
-[book repository](https://github.com/austin-putz/animal-models-book).
+[book repository](https://github.com/austin-putz/linear-models-in-animal-breeding).
 
 ## Citation
 
 If you use this book in your research or teaching, please cite as:
 
-> Putz, Austin (2025). *Linear Models in Animal Breeding: A Worked Approach*. https://austin-putz.github.io/animal-models-book/
+> Putz, Austin (2025). *Linear Models in Animal Breeding: A Worked Approach*. https://austin-putz.github.io/linear-models-in-animal-breeding/
 
 ## License
 
@@ -212,7 +212,7 @@ This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareA
 
 ## Feedback and Contributions
 
-Found a typo, error, or have a suggestion? Please [open an issue](https://github.com/austin-putz/animal-models-book/issues) on GitHub or submit a pull request. This book benefits from community input and we welcome contributions.
+Found a typo, error, or have a suggestion? Please [open an issue](https://github.com/austin-putz/linear-models-in-animal-breeding/issues) on GitHub or submit a pull request. This book benefits from community input and we welcome contributions.
 
 ## Acknowledgments
 

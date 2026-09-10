@@ -13,7 +13,7 @@ book:
   date: today
 
   reader-mode: true
-  repo-url: https://github.com/austin-putz/animal-models-book
+  repo-url: https://github.com/austin-putz/linear-models-in-animal-breeding
   repo-actions: [edit, issue]
   search: true
   page-navigation: true
@@ -89,7 +89,7 @@ book:
     left: "Copyright 2025, Austin Putz"
     right:
       - icon: github
-        href: https://github.com/austin-putz/animal-models-book
+        href: https://github.com/austin-putz/linear-models-in-animal-breeding
       - text: "License: CC BY-NC-SA 4.0"
 
 bibliography: references.bib

@@ -53,7 +53,7 @@ written.
 
 ### Datasets and Examples
 
-All datasets used in this book are synthetic and available in the [book repository](https://github.com/austin-putz/animal-models-book/tree/main/data).
+All datasets used in this book are synthetic and available in the [book repository](https://github.com/austin-putz/linear-models-in-animal-breeding/tree/main/data).
 
 ### Companion Volumes
 
