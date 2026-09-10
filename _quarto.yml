@@ -118,6 +118,9 @@ format:
     link-external-icon: true
     citations-hover: true
     footnotes-hover: true
+    # Click any figure to enlarge. The Chapter 1 overview infographic is dense
+    # enough that reading it inline is not realistic.
+    lightbox: auto
     fig-width: 8
     fig-height: 6
     fig-dpi: 300
@@ -128,6 +131,7 @@ format:
 
   pdf:
     documentclass: book
+    include-in-header: styles/pdf-preamble.tex
     classoption: [oneside, openany]
     geometry: margin=1in
     toc: true

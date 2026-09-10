@@ -30,6 +30,24 @@ By the end of this chapter, you will be able to:
 
 ## Why linear algebra?
 
+@fig-matrix-overview is this chapter on one page. Nothing in it needs to make sense yet — come
+back to it when you have finished, and use it as a map in the meantime.
+
+![Matrices in animal breeding. Panel 1 is §1.2, panel 2 is §1.6, panel 3 is §1.3 to §1.5, and
+panel 4 is the applications map in §1.1.2 below.](../assets/figs/ch01-matrices-overview.png){#fig-matrix-overview
+fig-alt="A four-panel infographic titled Matrices in Animal Breeding. Panel 1, what is a matrix: a
+three by three array of the numbers 1 to 9, with definitions of element, row, column and dimension.
+Panel 2, common matrix types: a vector of phenotypes, a square identity matrix, a symmetric
+relationship matrix, and a diagonal residual variance matrix. Panel 3, basic operations: addition
+and subtraction, scalar multiplication, matrix multiplication, and transpose. Panel 4, where
+matrices are used: pedigree relationship matrices, genomic relationship matrices, the mixed model
+equations, genetic evaluation and selection, and multiple-trait models."}
+
+Two entries in the bottom row — the **genomic relationship matrix** and **single-step GBLUP** —
+are outside this book's scope and belong to the companion volume on genomics. They are in the
+figure so you can see where the pedigree-based methods you are about to learn eventually lead, not
+because they are taught here.
+
 ### What it is
 
 **Linear algebra is the mathematics of many quantities at once.** Ordinary algebra handles one
