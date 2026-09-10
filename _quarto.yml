@@ -7,8 +7,8 @@ project:
     - assets/video/**
 
 book:
-  title: "Animal Models: A Graduate Introduction to Mixed Model Equations"
-  subtitle: "From Hand Calculations to National Evaluations"
+  title: "Linear Models in Animal Breeding"
+  subtitle: "A Worked Approach"
   author: "Austin Putz"
   date: today
 

@@ -4,7 +4,7 @@ Guidance for Claude Code when working in this repository.
 
 ## What this book is
 
-**Animal Models: A Graduate Introduction to Mixed Model Equations in Breeding and Genetics** — a
+**Linear Models in Animal Breeding: A Worked Approach** — a
 Quarto book for first-year graduate students in animal breeding and genetics.
 
 The book teaches the **pedigree-based** mixed model. Every chapter starts with a dataset small

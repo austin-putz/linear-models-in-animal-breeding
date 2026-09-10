@@ -10,7 +10,7 @@ can see the shape of the whole book and follow along as it fills in.
 Anything you read here may change. Do not cite it yet.
 :::
 
-Welcome to **Animal Models: A Graduate Introduction to Mixed Model Equations in Breeding and Genetics**.
+Welcome to **Linear Models in Animal Breeding: A Worked Approach**.
 
 ## About This Book
 
@@ -202,7 +202,7 @@ Datasets referenced in examples are available in the `data/` directory of the
 
 If you use this book in your research or teaching, please cite as:
 
-> Putz, Austin (2025). *Animal Models: A Graduate Introduction to Mixed Model Equations in Breeding and Genetics*. https://austin-putz.github.io/animal-models-book/
+> Putz, Austin (2025). *Linear Models in Animal Breeding: A Worked Approach*. https://austin-putz.github.io/animal-models-book/
 
 ## License
 

@@ -1,8 +1,14 @@
-# Animal Models: A Graduate Introduction
+# Linear Models in Animal Breeding: A Worked Approach
 
 [![Render and Deploy](https://github.com/austin-putz/animal-models-book/actions/workflows/quarto-publish.yml/badge.svg)](https://github.com/austin-putz/animal-models-book/actions/workflows/quarto-publish.yml)
 
-A comprehensive Quarto book on mixed model equations for animal breeding and genetics, designed for graduate students.
+A graduate textbook on the pedigree-based mixed model, written so that every result is worked on
+real numbers before it is written as a formula. Each chapter opens with a dataset small enough to
+solve with a calculator, works the mixed model equations step by step, reproduces the identical
+answer in R, and then scales the same model up.
+
+Genomic selection and large-scale computation are deliberately out of scope; each is deferred to a
+companion volume.
 
 ## Book URL
 
@@ -139,14 +145,14 @@ Please ensure your contributions maintain the book's pedagogical style:
 If you use this book in your research or teaching, please cite as:
 
 ```
-Putz, Austin (2025). Animal Models: A Graduate Introduction to Mixed Model Equations
+Putz, Austin (2025). Linear Models in Animal Breeding: A Worked Approach
   in Breeding and Genetics. https://austin-putz.github.io/animal-models-book/
 ```
 
 BibTeX:
 ```bibtex
 @book{putz2025animal,
-  title={Animal Models: A Graduate Introduction to Mixed Model Equations in Breeding and Genetics},
+  title={Linear Models in Animal Breeding: A Worked Approach},
   author={Putz, Austin},
   year={2025},
   url={https://austin-putz.github.io/animal-models-book/},

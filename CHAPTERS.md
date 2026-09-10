@@ -1,7 +1,6 @@
 # Chapter Outline
 
-Working outline for *Animal Models: A Graduate Introduction to Mixed Model Equations in Breeding
-and Genetics*. This file is the single source of truth for the chapter list; `_quarto.yml` is kept
+Working outline for *Linear Models in Animal Breeding: A Worked Approach*. This file is the single source of truth for the chapter list; `_quarto.yml` is kept
 in sync with it.
 
 Scope decisions (genomics and large-scale computation deferred to companion volumes, trait
