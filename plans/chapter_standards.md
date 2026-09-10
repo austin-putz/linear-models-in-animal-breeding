@@ -177,6 +177,14 @@ already requires that). A word used once and never again is prose. A term whose 
 obvious from the surrounding sentence is prose. Reserve the box for vocabulary the reader will be
 held to.
 
+### Provenance notes are prose, not callouts
+
+A note on where a result came from — who proved it, when, and what it superseded — is ordinary
+text with `[@key]` citations in it, or a `### Where this material comes from` subsection. It is
+**not** a *Beyond This Book* box: that box marks a **scope boundary**, something this book
+deliberately does not teach. Using it for history inflates the callout count and blunts the one
+signal that is supposed to mean "we stop here."
+
 ### Callout colours are deliberately not the animation palette
 
 The manim palette encodes *what a quantity is in the model*. Callout colours encode *what the
@@ -223,8 +231,9 @@ opening and closing beats are fixed.
 | 9 | **Interpret the answer** | What the numbers mean to a breeder. **Never skip this** — the beat most often dropped and the one students most need |
 | 10 | **The same model in R** | Explicit matrix code first, then the one-line package call. Both must reproduce the hand answer exactly |
 | 11 | **Scale up** | The larger dataset, same trait, same model |
-| 12 | **Key equations** | Recap listing this chapter's Tier 1 boxes by `@eq-` reference |
-| 13 | **Exercises** | Count per `CHAPTERS.md`; solutions to Appendix H |
+| 12 | **Further reading** | 3–6 sources, each one line on *what it is for* and *when to reach for it*. Written as advice, not a list. Every entry verified through the scite tool and present in `references.bib` with a DOI (CLAUDE.md, *Citations and references*) |
+| 13 | **Key equations** | Recap listing this chapter's Tier 1 boxes by `@eq-` reference |
+| 14 | **Exercises** | Count per `CHAPTERS.md`; solutions to Appendix H |
 
 **Beats 8 and 9 are the two to defend in review**, and they fail in opposite directions. A chapter
 that stops after beat 7 has taught arithmetic on six pigs and left the reader unable to recognise

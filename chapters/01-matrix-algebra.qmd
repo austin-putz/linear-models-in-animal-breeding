@@ -63,13 +63,13 @@ teaches it.
 
 | Where it shows up | What the linear algebra does | Taught in |
 |---|---|---|
-| **The animal model** (Ch 6) | Build the mixed model equations, solve them for every effect at once, and read accuracy off the inverted coefficient matrix | §1.5, §1.9, §1.15 |
-| **Relationship matrices** (Ch 4) | Build **A** from a pedigree and invert it — the object that makes the animal model practical | §1.9, §1.12 |
-| **Selection index** (Ch 6) | Find the weights that combine an animal's own record with its relatives' by solving a linear system, $\mathbf{b} = \mathbf{P}^{-1}\mathbf{Ga}$ | §1.9 |
+| **The animal model** (Ch 6) | Build the mixed model equations [@henderson1975best], solve them for every effect at once, and read accuracy off the inverted coefficient matrix | §1.5, §1.9, §1.15 |
+| **Relationship matrices** (Ch 4) | Build **A** from a pedigree and invert it — the object that makes the animal model practical [@henderson1976simple] | §1.9, §1.12 |
+| **Selection index** (Ch 6) | Find the weights that combine an animal's own record with its relatives' by solving a linear system, $\mathbf{b} = \mathbf{P}^{-1}\mathbf{Ga}$ [@hazel1943genetic] | §1.9 |
 | **Fixed effects and contemporary groups** (Ch 2, Ch 5) | Decide which effects can be estimated at all, and which herds can be compared with which | §1.8, §1.10 |
 | **Multiple traits** (Ch 11) | Expand a small trait covariance matrix over every animal in the pedigree | §1.11 |
 | **Random regression** (Ch 12) | Fit a curve per animal from a polynomial basis, and reduce twenty traits to the few dimensions carrying the variation | §1.13 |
-| **Variance components** (Ch 20–22) | Build a likelihood out of quadratic forms, traces, and log-determinants, then differentiate it | §1.12, §1.14 |
+| **Variance components** (Ch 20–22) | Build a likelihood out of quadratic forms, traces, and log-determinants, then differentiate it [@patterson1971recovery] | §1.12, §1.14 |
 | **Simulation** (Ch 11, Ch 22) | Turn independent random draws into correlated breeding values with the right covariance structure | §1.12, §1.15 |
 | **Solving at scale** (Ch 24) | Get an answer when the coefficient matrix has a million rows and cannot be inverted directly | §1.9 |
 | **Optimal contribution selection** | Maximise genetic merit subject to a ceiling on average relationship — a quadratic form $\mathbf{x}'\mathbf{Ax}$ in the contributions | §1.14 · *theory in the companion volume on breeding programme design* |
@@ -892,6 +892,26 @@ model can return a breeding value even for an animal with no record of its own.
 
 <!-- {{< animation ch01-singular caption="A dependent column collapses the determinant to zero." >}} -->
 
+### Where this material comes from
+
+Rank, linear dependence and the determinant are nineteenth-century mathematics with no single
+originating paper, so nothing is cited for them above. What *does* have a literature is the
+question this section leads into: what to do with a model whose $\mathbf{X}$ is not full rank.
+
+Two results settle it, and both arrived surprisingly late. R. C. Bose gave the definition of an
+**estimable function** in the 1940s. Penrose [@penrose1955generalized] defined the generalized
+inverse for arbitrary matrices, and Rao [@rao1962note] showed what it does for least squares when
+the normal equations are singular.
+
+Those dates are worth pausing on, because they fall *after* Henderson had begun the work this book
+teaches. Searle — who took his doctorate in animal breeding under Henderson at Cornell — put it
+plainly in a later interview [@wells2009conversation]: his group had "not kept up with the concept
+of estimability propounded by R. C. Bose", nor were they "aware of Penrose's (1955) generalized
+inverse matrix which, as Rao (1962) demonstrated, clarified the whole business of solving least
+squares equations which are so often not of full rank."
+
+§1.10 is that clarification, and Chapter 2 makes estimability precise.
+
 **This is the normal case in animal breeding, not the exceptional one.** A contemporary group
 effect plus an overall mean is exactly the structure above. So is a sex effect with a mean, and a
 breed effect with a mean. Chapter 2 is largely about what to do with it, and the answer — §1.10 —
@@ -1059,7 +1079,9 @@ The inverse of a **covariance** matrix is a **precision** matrix, and it is wort
 covariance matrix says how much things vary together; its inverse says how much information you
 have about each after accounting for the others. This is the first hint of something that looks
 strange in Chapter 6: it is $\mathbf{A}^{-1}$, not $\mathbf{A}$, that appears in the mixed model
-equations. Relationships enter the equations as information, not as covariance.
+equations — and Henderson's rules for writing it down straight from a pedigree, without ever
+forming $\mathbf{A}$ at all [@henderson1976simple], are what made the animal model computable.
+Relationships enter the equations as information, not as covariance.
 
 ### Do not invert to solve
 
@@ -1322,7 +1344,7 @@ test precise, and Chapter 9 returns to it when genetic groups make the question 
 : Three generalized inverses of the same $\mathbf{X}_3'\mathbf{X}_3$. The individual solutions
 disagree completely; everything a breeder would report agrees exactly. {#tbl-ginv}
 
-@tbl-ginv collects all three. The third row is what R's `MASS::ginv()` produces — the Moore–Penrose inverse, which adds three
+@tbl-ginv collects all three. The third row is what R's `MASS::ginv()` produces — the Moore–Penrose inverse [@penrose1955generalized], which adds three
 further conditions to $\mathbf{AA}^-\mathbf{A} = \mathbf{A}$ and so is unique. It is a perfectly
 good g-inverse and it gives a third completely different answer, which is the point of the table.
 What `lm()` does is the second row: it silently drops a level and reports the rest relative to it.
@@ -2141,6 +2163,28 @@ enter wherever you need to.
 
 If you are heading straight for the animal model in Chapter 6, the minimum is §1.5, §1.9 and
 §1.15 — but read §1.2 through §1.5 first if you have not done linear algebra before.
+
+## Further reading
+
+Four sources, and when to reach for each.
+
+**[@searle1982matrix], *Matrix Algebra Useful for Statistics*.** If you read one book alongside
+this chapter, read this one. Searle wrote it for statisticians rather than mathematicians, it
+covers every operation here in far more depth, and its treatment of rank, generalized inverses and
+quadratic forms is the natural next step from §1.8, §1.10 and §1.14. Searle took his doctorate in
+animal breeding under Henderson, which is part of why the examples feel familiar.
+
+**[@penrose1955generalized] and [@rao1962note].** The two short papers behind §1.10 — Penrose
+defines the generalized inverse, Rao shows what it buys you when the normal equations are
+singular. Read them in that order, and only if you want to know where `MASS::ginv()` comes from.
+
+**[@henderson1976simple].** The paper that made the animal model practical, by giving rules to
+write $\mathbf{A}^{-1}$ directly from a pedigree without forming $\mathbf{A}$. You do not need it
+yet — Chapter 4 is built on it.
+
+**[@wells2009conversation].** An interview rather than a result, and the most readable thing on
+this list: how matrix algebra, linear models and animal breeding grew up together at Cornell, told
+by someone who was there.
 
 ## Key equations
 

@@ -190,8 +190,49 @@ Rscript setup.R                            # install R dependencies
 
 - Notation follows Mrode where it is standard (**y**, **X**, **b**, **Z**, **a**, **e**, **A**,
   **G₀**, **R**). The notation appendix is authoritative; check it before introducing a new symbol.
-- Cite with `[@key]` against `references.bib`. Do not invent citations — verify a reference exists
-  before adding it.
+## Citations and references
+
+A graduate textbook cites its sources. The rules below are not optional.
+
+**Verify every reference before it enters `references.bib`.** Use the **scite MCP tool**
+(`search_literature` to confirm the paper exists and get its metadata, `bibliography` to format the
+entry from stored metadata rather than from memory). Never hand-write a bib entry from recall — that
+is how wrong author initials, wrong years and non-existent DOIs get into a textbook. If scite cannot
+find it, either it does not exist under that description or you have the details wrong; resolve that
+before citing.
+
+**Every entry carries a DOI** where one exists. Books predating DOIs carry publisher and place
+instead. Record only fields you have actually seen — a start page you verified is better than a page
+range you guessed.
+
+**Citation keys** are `authorYEARword`, lowercase: `penrose1955generalized`, `hazel1943genetic`.
+
+### What earns a citation
+
+| Cite | Example |
+|---|---|
+| The paper where a named method or result **originates** | Henderson's rules for **A⁻¹** [@henderson1976simple]; the pseudoinverse [@penrose1955generalized] |
+| The **standard reference** for a whole topic, usually a book | Searle for matrix algebra in statistics [@searle1982matrix] |
+| A claim a reader might **want to check or dispute** | that non-additive variance is mostly small in practice |
+| A **historical** statement about who did what, and when | that Searle's group did not know of Penrose's result [@wells2009conversation] |
+
+### What does not earn one
+
+- **Standard mathematics with no single origin.** Rank, determinants, the transpose, matrix
+  multiplication — these are nineteenth-century results with no citable paper, and attaching one
+  would be false precision. Cite a *textbook* if the reader needs somewhere to go; cite nothing if
+  they do not.
+- **Anything unverified.** No exceptions.
+- **Padding.** A citation after every sentence teaches a student that citations are decoration.
+
+### Where they go
+
+- **Inline `[@key]`** at the claim itself, in the sentence that makes it.
+- **A `## Further reading` section** at the end of each chapter, before Key equations: three to six
+  entries, each one line saying *what it is for* and *when to reach for it*. This is the part
+  students actually use, so write it as advice rather than as a list.
+- Everything resolves in `references.qmd`, which renders the full bibliography from the `[@key]`
+  citations used across the book.
 - Chapter files are numbered `NN-slug.qmd`, appendices `X-slug.qmd`.
 
 
