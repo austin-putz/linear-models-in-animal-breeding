@@ -17,6 +17,11 @@ book:
   repo-actions: [edit, issue]
   search: true
   page-navigation: true
+  # Sidebar shows the parts only; a part expands when you click it, or
+  # automatically when you are reading inside it. Fully expanded, the 24
+  # chapters plus 9 appendices make the sidebar several screens long.
+  sidebar:
+    collapse-level: 1
   # Puts a download link for the built PDF in the site navbar.
   downloads: [pdf]
 
