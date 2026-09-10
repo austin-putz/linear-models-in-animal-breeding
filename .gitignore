@@ -11,6 +11,7 @@
 .RData
 .Ruserdata
 *.Rproj
+Rplots.pdf
 
 # Data-raw intermediate files (keep scripts, ignore outputs)
 data-raw/*.rds
