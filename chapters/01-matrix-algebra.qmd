@@ -804,7 +804,32 @@ information the other two lack — knowing a lamb is not in flock A already tell
 flock B.
 
 Columns that can be built from other columns are **linearly dependent**, and $\mathbf{X}_3$ has
-three columns of which only two carry independent information.
+three columns of which only two carry independent information. Build it and check the claim
+directly — column 2 plus column 3 really is column 1:
+
+```{r}
+#| label: ch01-dependent-column
+X3 <- cbind(baseline = 1,
+            flockA   = c(1, 1, 0, 0),
+            flockB   = c(0, 0, 1, 1))
+X3
+
+X3[, "flockA"] + X3[, "flockB"]      # equals the baseline column, every row
+all.equal(X3[, "flockA"] + X3[, "flockB"], X3[, "baseline"],
+          check.attributes = FALSE)
+```
+
+R will tell you the rank directly. `qr()` factorises the matrix and its `$rank` component counts
+the independent columns:
+
+```{r}
+#| label: ch01-rank
+qr(X3)$rank        # 2 -- not 3, even though there are three columns
+ncol(X3)           # 3 columns, so X3 is rank deficient
+
+qr(X)$rank         # the two-column X of section 1.7 is full rank
+ncol(X)
+```
 
 ::: {.callout-note .definition}
 ## Definition — Linear dependence and rank
@@ -831,7 +856,16 @@ $$
 \end{bmatrix}
 $$
 
-Again column 2 plus column 3 equals column 1.
+Again column 2 plus column 3 equals column 1 — the dependence has been inherited:
+
+```{r}
+#| label: ch01-xtx-singular
+XtX3 <- crossprod(X3)
+XtX3
+
+XtX3[, 2] + XtX3[, 3]     # still equals column 1
+qr(XtX3)$rank             # 2, in a 3 x 3 matrix
+```
 
 ::: {.callout-note .definition}
 ## Definition — Singular matrix
@@ -877,6 +911,18 @@ a redundant column the determinant is 0 — the 3 × 3 above has $\det = 0$, and
 $\begin{bmatrix} 100 & 100 \\ 100 & 100 \end{bmatrix}$, whose determinant is
 $100(100) - 100(100) = 0$.
 
+`det()` does all three:
+
+```{r}
+#| label: ch01-determinant
+XtX <- crossprod(X)
+XtX
+(XtX[1, 1] * XtX[2, 2]) - (XtX[1, 2] * XtX[2, 1])   # ad - bc, by hand
+det(XtX)                                            # the same, 4
+
+det(XtX3)          # 0 -- the rank-deficient one
+```
+
 Do not memorise the general formula; you will never compute a determinant larger than 3 × 3 by
 hand, and R does it in one call. Memorise the meaning instead, in its two forms:
 
@@ -888,19 +934,34 @@ hand, and R does it in one call. Memorise the meaning instead, in its two forms:
   each and $r_g = 1$: genetically, the same trait measured twice. REML will not converge on such a
   matrix, and Chapter 21 explains why.
 
-```{r}
-#| label: ch01-rank-det
-X3 <- cbind(baseline = 1, flockA = c(1, 1, 0, 0), flockB = c(0, 0, 1, 1))
-qr(X3)$rank                    # 2, not 3
-det(crossprod(X3))             # 0
-det(crossprod(X))              # 4, the full-rank version
+Here is that covariance matrix — two traits with $\sigma^2_a = 100$ each and a genetic
+correlation of exactly 1:
 
-Gsing <- matrix(100, nrow = 2, ncol = 2)
-det(Gsing)
-# solve() computes an inverse; section 1.9 is where that is explained. Here it
-# is only being asked for one that does not exist, to show what R does about it.
-try(solve(Gsing))
+```{r}
+#| label: ch01-singular-G
+Gsing <- matrix(c(100, 100,
+                  100, 100), nrow = 2)
+Gsing
+
+det(Gsing)          # 0
+qr(Gsing)$rank      # 1, in a 2 x 2 matrix
+
+# The genetic correlation this matrix implies:
+Gsing[1, 2] / sqrt(Gsing[1, 1] * Gsing[2, 2])   # exactly 1
 ```
+
+And this is what R does when you ask it to invert one. `solve()` computes an inverse — §1.9 is
+where that is explained — and here it is deliberately being asked for one that does not exist:
+
+```{r}
+#| label: ch01-singular-fails
+#| error: true
+solve(Gsing)
+```
+
+**That message is the one to recognise.** "System is exactly singular" is R telling you a column
+of your matrix is redundant. When it appears in a real analysis it almost always means two effects
+in the model cannot be told apart from each other — not that anything is broken.
 
 ## Inversion, solving, and partitioned matrices
 
@@ -1157,12 +1218,44 @@ $$
 \hat{\mathbf{b}}_1 = (0,\ 50,\ 43)'
 $$
 
+Built in R, the padding is what makes it a *generalized* inverse — the baseline's row and column
+stay zero:
+
+```{r}
+#| label: ch01-ginv-build
+XtX3 <- crossprod(X3)
+Xty3 <- crossprod(X3, y)
+
+Ginv_drop_baseline <- matrix(0, nrow = 3, ncol = 3)
+Ginv_drop_baseline[2:3, 2:3] <- solve(XtX3[2:3, 2:3])
+Ginv_drop_baseline
+
+drop(Ginv_drop_baseline %*% Xty3)     # 0, 50, 43
+```
+
 **Drop the flock B column.** Keep the baseline and flock A, which is exactly the $\mathbf{X}$ of
 §1.7, and pad the zero back in at the end:
 
 $$
 \hat{\mathbf{b}}_2 = (43,\ 7,\ 0)'
 $$
+
+```{r}
+#| label: ch01-ginv-build-2
+Ginv_drop_flockB <- matrix(0, nrow = 3, ncol = 3)
+Ginv_drop_flockB[1:2, 1:2] <- solve(XtX3[1:2, 1:2])
+
+drop(Ginv_drop_flockB %*% Xty3)       # 43, 7, 0
+```
+
+Both really are generalized inverses. The defining property is
+$\mathbf{AA}^-\mathbf{A} = \mathbf{A}$, and it holds for each:
+
+```{r}
+#| label: ch01-ginv-property
+all.equal(XtX3 %*% Ginv_drop_baseline %*% XtX3, XtX3)
+all.equal(XtX3 %*% Ginv_drop_flockB   %*% XtX3, XtX3)
+```
 
 These are not small disagreements. In the first, flock A's effect is 50 and the baseline is 0; in
 the second, flock A's effect is 7 and the baseline is 43. **Neither is more correct than the
@@ -1171,6 +1264,22 @@ other**, and asking "what is the effect of flock A?" has no answer.
 Now compute the fitted values from each. Both give $(50, 50, 43, 43)'$ — the two flock means,
 identically. And both give the same flock difference:
 $50 - 43 = 7$ from the first, $7 - 0 = 7$ from the second.
+
+```{r}
+#| label: ch01-ginv-fitted
+b1 <- Ginv_drop_baseline %*% Xty3
+b2 <- Ginv_drop_flockB   %*% Xty3
+
+# Different solutions...
+rbind(drop_baseline = drop(b1), drop_flockB = drop(b2))
+
+# ...identical fitted values.
+rbind(drop_baseline = drop(X3 %*% b1), drop_flockB = drop(X3 %*% b2))
+
+# ...and an identical flock difference.
+c(from_first = drop(b1)[2] - drop(b1)[3],
+  from_second = drop(b2)[2] - drop(b2)[3])
+```
 
 ::: {.callout-caution .check collapse="true"}
 ## Check Yourself
@@ -1219,36 +1328,25 @@ good g-inverse and it gives a third completely different answer, which is the po
 What `lm()` does is the second row: it silently drops a level and reports the rest relative to it.
 
 ```{r}
-#| label: ch01-ginv
-XtX3 <- crossprod(X3)
-Xty3 <- crossprod(X3, y)
+#| label: ch01-ginv-moore-penrose
+# MASS ships with R, so nothing needs installing.
+b3 <- MASS::ginv(XtX3) %*% Xty3
 
-# G-inverse 1: drop the baseline. Invert the 2 x 2 corner belonging to the two
-# flock columns, and leave the baseline's row and column as zeros.
-Ginv_drop_baseline <- matrix(0, nrow = 3, ncol = 3)
-Ginv_drop_baseline[2:3, 2:3] <- solve(XtX3[2:3, 2:3])
+rbind(drop_baseline = drop(b1),
+      drop_flockB   = drop(b2),
+      moore_penrose = drop(b3))
 
-# G-inverse 2: drop the flock B column instead.
-Ginv_drop_flockB <- matrix(0, nrow = 3, ncol = 3)
-Ginv_drop_flockB[1:2, 1:2] <- solve(XtX3[1:2, 1:2])
+# Still the same fitted values, and still a 7 kg difference.
+drop(X3 %*% b3)
+drop(b3)[2] - drop(b3)[3]
+```
 
-# Each one really is a generalized inverse: A A- A = A.
-all.equal(XtX3 %*% Ginv_drop_baseline %*% XtX3, XtX3)
-all.equal(XtX3 %*% Ginv_drop_flockB   %*% XtX3, XtX3)
+R's own `lm()` takes the second route — it silently drops a level and reports everything relative
+to it. That is why an `lm()` summary shows one fewer coefficient than you have levels:
 
-# Three solutions, and they disagree completely.
-b_drop_baseline <- Ginv_drop_baseline %*% Xty3
-b_drop_flockB   <- Ginv_drop_flockB   %*% Xty3
-b_moore_penrose <- MASS::ginv(XtX3)   %*% Xty3
-
-rbind(drop_baseline = drop(b_drop_baseline),
-      drop_flockB   = drop(b_drop_flockB),
-      moore_penrose = drop(b_moore_penrose))
-
-# The fitted values are identical for all three.
-rbind(drop_baseline = drop(X3 %*% b_drop_baseline),
-      drop_flockB   = drop(X3 %*% b_drop_flockB),
-      moore_penrose = drop(X3 %*% b_moore_penrose))
+```{r}
+#| label: ch01-lm-drops-a-level
+coef(lm(wt ~ flock, data = lambs))
 ```
 
 ## Kronecker product, Hadamard product, and direct sum
@@ -1283,6 +1381,20 @@ $$
 
 <!-- {{< animation ch01-kronecker caption="G0 (x) A expands a 2x2 and a 2x2 into a 4x4." >}} -->
 
+In R the operator is `%x%`, and `kronecker()` is the same function spelled out:
+
+```{r}
+#| label: ch01-kronecker-build
+# From here A is the relationship matrix, not the generic 2 x 2 of section 1.3.
+A  <- matrix(c(1, 0.5,
+               0.5, 1), nrow = 2)     # two full sibs
+G0 <- matrix(c(36, 12,
+               12,  9), nrow = 2)     # the two traits
+
+G0 %x% A                              # 4 x 4: animal within trait
+dim(G0 %x% A)
+```
+
 Read it. The top-left block is $36\mathbf{A}$ — trait 1's genetic variance spread over the two
 sibs. The bottom-right is $9\mathbf{A}$, trait 2's. The off-diagonal blocks are
 $12\mathbf{A}$, holding every trait-1-with-trait-2 covariance: 12 on the block's diagonal, which is
@@ -1303,13 +1415,30 @@ $$
 \end{array}\right]
 $$
 
-Same sixteen numbers, different positions. The general definition is that
+```{r}
+#| label: ch01-kronecker-ordering
+A %x% G0        # the other ordering: trait within animal
+```
+
+Compare element (1, 2) between the two: 18 in the first, 12 in the second. Same sixteen numbers,
+different positions — which is exactly the error the box below warns about.
+
+The general definition is that
 $\mathbf{A} \otimes \mathbf{B}$ replaces each $a_{ij}$ with the block $a_{ij}\mathbf{B}$, so an
 $m \times n$ times a $p \times q$ gives $mp \times nq$. One property is worth carrying forward:
 
 $$
 (\mathbf{A} \otimes \mathbf{B})(\mathbf{C} \otimes \mathbf{D}) = \mathbf{AC} \otimes \mathbf{BD}
 $$
+
+The consequence worth checking yourself: you can invert the two small factors instead of the big
+product, which is the difference between inverting two 2 × 2s and one 4 × 4 — or, in Chapter 11,
+between a handful of traits and every animal in the pedigree.
+
+```{r}
+#| label: ch01-kronecker-inverse
+all.equal(solve(G0 %x% A), solve(G0) %x% solve(A))
+```
 
 That mixed-product rule is what keeps multi-trait mixed model equations tractable — it lets you
 invert a Kronecker product by inverting its two small factors separately, since
@@ -1343,6 +1472,11 @@ $$
 \begin{bmatrix} 1 & 0.25 \\ 0.25 & 1 \end{bmatrix}
 $$
 
+```{r}
+#| label: ch01-hadamard
+A * A        # element by element -- NOT matrix multiplication
+```
+
 Full sibs share half their additive genes but only a quarter of their additive-by-additive
 combinations, and the squaring is where that quarter comes from. $\mathbf{A} \# \mathbf{A}$ is the
 relationship matrix for additive × additive epistasis and $\mathbf{A} \# \mathbf{D}$ for
@@ -1358,31 +1492,17 @@ $$
 \begin{bmatrix} \mathbf{A}_1 & \mathbf{0} \\ \mathbf{0} & \mathbf{A}_2 \end{bmatrix}
 $$
 
+`Matrix::bdiag()` builds one. Two unrelated sib pairs have no covariance across the blocks, so the
+off-diagonal corners are zero:
+
+```{r}
+#| label: ch01-direct-sum
+as.matrix(bdiag(A, A))
+```
+
 This is what a set of unrelated families looks like, and what a residual covariance matrix looks
 like when animals are grouped into contemporary groups with no covariance across groups
 (Chapters 5 and 24).
-
-```{r}
-#| label: ch01-kron-hadamard
-# From here A is the relationship matrix, not the generic 2 x 2 of section 1.3.
-A  <- matrix(c(1, 0.5,
-               0.5, 1), nrow = 2)    # two full sibs
-G0 <- matrix(c(36, 12,
-               12,  9), nrow = 2)    # the two traits
-
-# Kronecker: %x% is the operator, kronecker() the spelled-out name.
-G0 %x% A      # animal within trait
-A %x% G0      # trait within animal
-
-# Hadamard: * is element-wise, NOT matrix multiplication.
-A * A         # A # A, for additive x additive epistasis
-
-# Invert the two small factors instead of the big product -- same answer.
-all.equal(solve(G0 %x% A), solve(G0) %x% solve(A))
-
-# Direct sum: two unrelated sib pairs, no covariance across the blocks.
-as.matrix(bdiag(A, A))
-```
 
 ## Cholesky decomposition
 
@@ -1688,12 +1808,36 @@ $$
 \mathbf{e}'\mathbf{e} = (-2)^2 + 2^2 + (-2)^2 + 2^2 = 16
 $$
 
+```{r}
+#| label: ch01-residuals
+b_hat <- drop(solve(crossprod(X), crossprod(X, y)))
+e <- drop(y - X %*% b_hat)
+e
+
+drop(crossprod(e))     # e'e = 16, the residual sum of squares
+```
+
 which is $\mathbf{e}'\mathbf{Ie}$, a quadratic form with $\mathbf{A} = \mathbf{I}$. Dividing by the
-residual degrees of freedom, $4 - 2 = 2$, gives $\hat{\sigma}^2_e = 8$ kg². The same construction
-gives $\mathbf{y}'\mathbf{y} = 8714$ as the uncorrected total sum of squares and
+residual degrees of freedom, $4 - 2 = 2$, gives $\hat{\sigma}^2_e = 8$ kg².
+
+```{r}
+#| label: ch01-sigma2e
+df <- nrow(X) - qr(X)$rank    # 4 records - 2 estimated effects
+df
+drop(crossprod(e)) / df       # sigma-hat squared = 8
+```
+
+The same construction gives $\mathbf{y}'\mathbf{y} = 8714$ as the uncorrected total sum of squares and
 $\hat{\mathbf{b}}'\mathbf{X}'\mathbf{y} = 43(186) + 7(100) = 8698$ as the part explained by the
 model, and $8714 - 8698 = 16$ recovers the residual sum of squares — the sums-of-squares partition
 Chapter 20 estimates variance components from.
+
+```{r}
+#| label: ch01-ss-partition
+yty      <- drop(crossprod(y))               # total
+ss_model <- drop(b_hat %*% crossprod(X, y))  # explained by the model
+c(total = yty, model = ss_model, residual = yty - ss_model)
+```
 
 ### Trace
 
@@ -1705,6 +1849,18 @@ $$
 \operatorname{tr}(\mathbf{AB}) = \operatorname{tr}(\mathbf{BA})
 $$
 
+There is no `trace()` in base R; you sum the diagonal yourself. Check the reordering property on
+two matrices whose products are plainly different:
+
+```{r}
+#| label: ch01-trace
+AB <- A %*% G0
+BA <- G0 %*% A
+AB                                                      # not the same matrix
+BA
+c(trace_AB = sum(diag(AB)), trace_BA = sum(diag(BA)))   # but the same trace
+```
+
 The result worth memorising concerns the **hat matrix**
 $\mathbf{H} = \mathbf{X}(\mathbf{X}'\mathbf{X})^{-}\mathbf{X}'$, which turns observations into
 fitted values: $\hat{\mathbf{y}} = \mathbf{Hy}$. Its trace equals the rank of $\mathbf{X}$. For
@@ -1712,6 +1868,16 @@ Example A, $\operatorname{tr}(\mathbf{H}) = 2$, and the residual degrees of free
 $n - \operatorname{tr}(\mathbf{H}) = 4 - 2 = 2$ — the same 2 used above. **That is where degrees of
 freedom come from**: they count the dimensions the model consumed, and the trace of the projection
 matrix counts them whether or not $\mathbf{X}$ was full rank.
+
+```{r}
+#| label: ch01-hat-matrix
+H <- X %*% solve(crossprod(X)) %*% t(X)
+
+drop(H %*% y)             # the fitted values: 50 50 43 43
+sum(diag(H))              # trace = 2
+qr(X)$rank                # the same 2
+nrow(X) - sum(diag(H))    # residual degrees of freedom
+```
 
 ### Matrix derivatives
 
@@ -1776,32 +1942,6 @@ this book has a symmetric $\mathbf{A}$ — they are all covariance matrices or c
 the short version is the one to carry.
 :::
 
-```{r}
-#| label: ch01-quadforms
-b_hat <- drop(solve(crossprod(X), crossprod(X, y)))
-e <- drop(y - X %*% b_hat)
-e
-
-# The residual sum of squares is the quadratic form e'e.
-ete <- drop(crossprod(e))
-ete
-
-df <- nrow(X) - qr(X)$rank      # 4 - 2 = 2
-df
-ete / df                        # sigma-hat squared = 8
-
-# The sums-of-squares partition: total = model + residual.
-yty <- drop(crossprod(y))
-ss_model <- drop(b_hat %*% crossprod(X, y))
-yty
-ss_model
-yty - ss_model                  # back to 16
-
-# The hat matrix turns observations into fitted values; its trace is the rank.
-H <- X %*% solve(crossprod(X)) %*% t(X)
-sum(diag(H))
-qr(X)$rank
-```
 
 ## Variances of linear combinations: building V
 
