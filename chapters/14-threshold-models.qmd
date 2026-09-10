@@ -1,0 +1,26 @@
+---
+title: "Threshold Models for Categorical Traits"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Explain** the liability concept and the threshold model
+2. **Set** up a threshold model for a binary trait and solve it iteratively
+3. **Extend** to more than two ordered categories with multiple thresholds
+4. **Convert** heritability between the observed and underlying scales
+5. **Fit** a joint model for a categorical and a continuous trait
+:::
+
+*Assumes Ch 6, Ch 11.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Binary and ordered categorical traits in one chapter — same model, more thresholds.
+:::

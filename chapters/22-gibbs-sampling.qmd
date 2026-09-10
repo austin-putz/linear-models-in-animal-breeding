@@ -1,0 +1,26 @@
+---
+title: "Bayesian Estimation via Gibbs Sampling"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **State** the Bayesian formulation of the animal model and its priors
+2. **Derive** the full conditional distributions
+3. **Implement** a Gibbs sampler for a single-trait animal model
+4. **Assess** convergence and mixing
+5. **Summarize** posteriors and compare them to REML point estimates
+:::
+
+*Assumes Ch 21.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** The third route to the same variance components, and the one that gives full distributions.
+:::

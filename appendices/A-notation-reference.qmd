@@ -1,0 +1,11 @@
+---
+title: "Notation reference"
+---
+
+::: {.callout-warning}
+## Appendix in progress
+
+This appendix has not been written yet.
+
+**Contents.** Authoritative symbol list; check before introducing any new symbol
+:::

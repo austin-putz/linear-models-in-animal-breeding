@@ -1,0 +1,26 @@
+---
+title: "Data Preparation, Contemporary Groups, and Connectedness"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Define** contemporary groups and justify a definition for a given trait
+2. **Diagnose** and handle small and singleton contemporary groups
+3. **Assess** genetic connectedness and explain the consequences of disconnection
+4. **Detect** and resolve pedigree errors
+5. **Apply** an editing pipeline and document its decisions reproducibly
+:::
+
+*Assumes Ch 2, Ch 4.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** What goes wrong before a model is ever fitted. This is where real analyses fail.
+:::

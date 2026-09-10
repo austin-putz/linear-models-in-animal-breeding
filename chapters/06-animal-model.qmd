@@ -1,0 +1,26 @@
+---
+title: "The Animal Model"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Build** and solve the animal-model MME by hand for a small pedigree
+2. **Explain** the role of α = σ²e/σ²a and what happens as it grows
+3. **Obtain** PEV, accuracy, and reliability from the inverse of the LHS
+4. **Decompose** an EBV into parent average, yield deviation, and progeny contribution
+5. **Explain** BLUP as a selection index with simultaneously estimated fixed effects
+:::
+
+*Assumes Ch 2 (X), Ch 3 (Z), Ch 4 (A⁻¹).*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** The central chapter. Solve the full MME with **A⁻¹**, then interpret what came out.
+:::

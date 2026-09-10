@@ -1,0 +1,2 @@
+# Pinned to the versions verified working on 2026-09-03.
+manim==0.21.0

@@ -1,0 +1,26 @@
+---
+title: "Solving the Mixed Model Equations at Scale"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Explain** why direct inversion is infeasible for a national evaluation
+2. **Describe** the sparsity of the MME and of **A⁻¹**
+3. **Implement** Jacobi and Gauss–Seidel iteration on a small system
+4. **Describe** PCG and iteration on data conceptually
+5. **Explain** how reliabilities are approximated when the LHS cannot be inverted
+:::
+
+*Assumes Ch 6.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Expose students to what production software actually does. Deliberately thin.
+:::

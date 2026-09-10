@@ -1,0 +1,26 @@
+---
+title: "Multibreed Models"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Explain** why one **A** and one variance are wrong across breeds
+2. **Model** breed composition and heterosis as covariates
+3. **Define** segregation variance and state when it matters
+4. **Build** a breed-specific covariance structure
+5. **Explain** metafounders as a generalization of unknown parent groups
+:::
+
+*Assumes Ch 9, Ch 11.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** More than one breed in a single evaluation.
+:::

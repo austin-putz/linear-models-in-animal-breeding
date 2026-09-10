@@ -23,13 +23,15 @@ cran_packages <- c(
   "sommer",          # REML-based animal models
   "pedigreemm",      # Pedigree-based mixed models
   "MCMCglmm",        # Bayesian mixed models (MCMC)
-  "BGLR",            # Bayesian genomic prediction
-  "coxme",           # Cox models with random effects (survival)
+  "coda",            # MCMC convergence diagnostics
+  "survival",        # Survival analysis (Ch 15)
+  "coxme",           # Cox models with random effects (Ch 15)
 
   # Matrix operations and pedigree
   "Matrix",          # Sparse matrices
   "nadiv",           # Numerical additive relationships
   "pedigree",        # Pedigree processing
+  "orthopolynom",    # Legendre polynomials (Ch 12)
   "MASS",            # mvrnorm for multivariate normal
 
   # Tables and output

@@ -1,0 +1,26 @@
+---
+title: "Maternal Effects Models"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Separate** direct and maternal genetic contributions to a phenotype
+2. **Build** the MME with correlated direct and maternal genetic effects
+3. **Include** a maternal permanent environmental effect and justify it
+4. **Interpret** the direct–maternal genetic correlation and the controversy surrounding it
+5. **Compute** total maternal and total genetic merit for selection
+:::
+
+*Assumes Ch 6, Ch 8.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Two correlated genetic effects on one phenotype.
+:::

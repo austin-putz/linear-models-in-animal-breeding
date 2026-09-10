@@ -1,0 +1,11 @@
+---
+title: "Fast inbreeding computation"
+---
+
+::: {.callout-warning}
+## Appendix in progress
+
+This appendix has not been written yet.
+
+**Contents.** Meuwissen & Luo algorithm, worked
+:::

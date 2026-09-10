@@ -1,0 +1,26 @@
+---
+title: "Pedigrees and Relationship Matrices"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Store,** sort, and renumber a pedigree correctly
+2. **Build** **A** by the tabular method by hand
+3. **Compute** inbreeding coefficients and interpret the diagonal of **A**
+4. **Build** **A⁻¹** directly by Henderson's rules, with and without inbreeding
+5. **Reproduce** both in R
+:::
+
+*Assumes Ch 1.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** **A** and **A⁻¹** — the object that makes the animal model work.
+:::

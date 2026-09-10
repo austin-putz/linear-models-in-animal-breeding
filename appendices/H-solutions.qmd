@@ -1,0 +1,11 @@
+---
+title: "Solutions to exercises"
+---
+
+::: {.callout-warning}
+## Appendix in progress
+
+This appendix has not been written yet.
+
+**Contents.** All chapters
+:::

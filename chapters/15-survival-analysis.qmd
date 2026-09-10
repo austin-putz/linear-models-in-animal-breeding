@@ -1,0 +1,26 @@
+---
+title: "Survival Analysis"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Define** censoring and explain why it breaks a standard linear model
+2. **Distinguish** true from functional longevity
+3. **Contrast** a binary stayability model with a true time-to-event analysis
+4. **Fit** a proportional hazards model containing a genetic effect
+5. **Interpret** survival EBVs and relate them to economic merit
+:::
+
+*Assumes Ch 6, Ch 14.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Time-to-event data and censoring.
+:::

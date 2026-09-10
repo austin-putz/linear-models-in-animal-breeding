@@ -1,0 +1,26 @@
+---
+title: "Crossbred Evaluation and CCPS"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Explain** why purebred performance predicts crossbred performance imperfectly
+2. **Define** the purebred–crossbred genetic correlation r_pc and its consequences
+3. **Set** up purebred and crossbred performance as two correlated traits
+4. **Judge** when crossbred data is worth collecting
+5. **Describe** how genomic breed-origin methods extend this
+:::
+
+*Assumes Ch 11, Ch 18.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Selecting purebreds for crossbred performance.
+:::

@@ -1,0 +1,26 @@
+---
+title: "Genetic Groups"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Explain** what the base population assumption means and when it fails
+2. **Decide** how to form unknown parent groups for a given population
+3. **Set** up and solve an animal model with groups
+4. **Interpret** group solutions and their effect on estimated genetic trend
+5. **State** the limitations of UPG and what metafounders change
+:::
+
+*Assumes Ch 4, Ch 6.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Unknown parent groups, and an honest statement of what they get wrong.
+:::

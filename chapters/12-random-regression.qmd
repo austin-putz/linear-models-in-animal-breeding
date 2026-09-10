@@ -1,0 +1,26 @@
+---
+title: "Longitudinal Data and Random Regression"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Distinguish** fixed from random regression and state what each can model
+2. **Build** a covariate matrix of Legendre polynomials
+3. **Set** up and solve a random regression model
+4. **Recover** the covariance function and per-time-point variances from RR coefficients
+5. **Fit** and interpret a reaction norm as a special case
+:::
+
+*Assumes Ch 8, Ch 11.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Traits measured along a trajectory.
+:::

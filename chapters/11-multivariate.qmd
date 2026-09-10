@@ -1,0 +1,26 @@
+---
+title: "Multivariate Models"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Write** the multivariate MME using the Kronecker product
+2. **Solve** a two-trait model by hand with equal design matrices
+3. **Handle** missing records and unequal design matrices
+4. **Explain** how genetic correlation moves information between traits
+5. **Describe** how dimension reduction makes many-trait models tractable
+:::
+
+*Assumes Ch 6, Ch 1 (§1.7).*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Several traits at once; the Kronecker product earns its keep.
+:::

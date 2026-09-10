@@ -1,0 +1,26 @@
+---
+title: "Random Environmental Effects"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Distinguish** permanent from temporary environmental effects
+2. **Define** repeatability and state its relationship to heritability
+3. **Set** up and solve a repeatability model with multiple records per animal
+4. **Model** a common environmental (litter) effect and explain its confounding with relationship
+5. **Interpret** variance ratios when several random effects compete for the same variance
+:::
+
+*Assumes Ch 6.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Repeatability and common environmental effects — a second random effect that is not genetic.
+:::

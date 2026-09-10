@@ -2,10 +2,35 @@
    Custom styles for Animal Models book
    ============================================ */
 
+/* ------------------------------------------------------------
+   Surface tokens. Every hardcoded colour below refers to one of
+   these, so the dark theme is a single override block at the end
+   of the file rather than a parallel set of rules.
+   ------------------------------------------------------------ */
+:root {
+  --am-surface:      #f8f9fa;   /* code blocks, inline code, equation panels */
+  --am-surface-alt:  #f5f5f5;   /* display math */
+  --am-stripe:       #f2f2f2;   /* table zebra striping */
+  --am-stripe-hover: #e9ecef;
+  --am-border:       #dee2e6;
+  --am-heading-2:    #343a40;
+  --am-heading-3:    #495057;
+  --am-muted:        #6c757d;   /* figure captions, footer */
+  --am-link:         #007bff;
+  --am-link-hover:   #0056b3;
+  --am-accent:       #007bff;   /* h1 rule, table header, practice box */
+
+  --am-tip-bg:       #d4edda;   --am-tip-fg:       #155724;   --am-tip-br:       #28a745;
+  --am-note-bg:      #d1ecf1;   --am-note-fg:      #0c5460;   --am-note-br:      #17a2b8;
+  --am-important-bg: #fff3cd;   --am-important-fg: #856404;   --am-important-br: #ffc107;
+  --am-warning-bg:   #f8d7da;   --am-warning-fg:   #721c24;   --am-warning-br:   #dc3545;
+  --am-practice-box: #e7f3ff;
+}
+
 /* Equation blocks: add subtle background */
 .equation-container {
-  background-color: #f8f9fa;
-  border-left: 3px solid #007bff;
+  background-color: var(--am-surface);
+  border-left: 3px solid var(--am-accent);
   padding: 15px;
   margin: 20px 0;
   border-radius: 4px;
@@ -22,7 +47,7 @@
 /* Code blocks: adjust folding button */
 .code-fold-btn {
   font-size: 0.85em;
-  color: #6c757d;
+  color: var(--am-muted);
 }
 
 /* Tables: zebra striping and hover */
@@ -33,16 +58,16 @@ table {
 }
 
 table tbody tr:nth-child(odd) {
-  background-color: #f2f2f2;
+  background-color: var(--am-stripe);
 }
 
 table tbody tr:hover {
-  background-color: #e9ecef;
+  background-color: var(--am-stripe-hover);
 }
 
 table th {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--am-accent);
+  color: #fff;
   font-weight: bold;
   padding: 10px;
   text-align: left;
@@ -50,7 +75,7 @@ table th {
 
 table td {
   padding: 8px;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--am-border);
 }
 
 /* Callout styling enhancements */
@@ -61,44 +86,44 @@ table td {
 }
 
 .callout-tip {
-  border-left: 4px solid #28a745;
-  background-color: #d4edda;
+  border-left: 4px solid var(--am-tip-br);
+  background-color: var(--am-tip-bg);
 }
 
 .callout-tip .callout-header {
-  color: #155724;
+  color: var(--am-tip-fg);
 }
 
 .callout-note {
-  border-left: 4px solid #17a2b8;
-  background-color: #d1ecf1;
+  border-left: 4px solid var(--am-note-br);
+  background-color: var(--am-note-bg);
 }
 
 .callout-note .callout-header {
-  color: #0c5460;
+  color: var(--am-note-fg);
 }
 
 .callout-important {
-  border-left: 4px solid #ffc107;
-  background-color: #fff3cd;
+  border-left: 4px solid var(--am-important-br);
+  background-color: var(--am-important-bg);
 }
 
 .callout-important .callout-header {
-  color: #856404;
+  color: var(--am-important-fg);
 }
 
 .callout-warning {
-  border-left: 4px solid #dc3545;
-  background-color: #f8d7da;
+  border-left: 4px solid var(--am-warning-br);
+  background-color: var(--am-warning-bg);
 }
 
 .callout-warning .callout-header {
-  color: #721c24;
+  color: var(--am-warning-fg);
 }
 
 /* Chapter headings */
 h1 {
-  border-bottom: 2px solid #007bff;
+  border-bottom: 2px solid var(--am-accent);
   padding-bottom: 10px;
   margin-bottom: 30px;
   margin-top: 40px;
@@ -107,35 +132,35 @@ h1 {
 h2 {
   margin-top: 30px;
   margin-bottom: 20px;
-  color: #343a40;
+  color: var(--am-heading-2);
 }
 
 h3 {
   margin-top: 25px;
   margin-bottom: 15px;
-  color: #495057;
+  color: var(--am-heading-3);
 }
 
 /* Figure captions */
 figcaption {
   font-style: italic;
   text-align: center;
-  color: #6c757d;
+  color: var(--am-muted);
   margin-top: 10px;
   font-size: 0.9em;
 }
 
 /* Code output */
 pre {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background-color: var(--am-surface);
+  border: 1px solid var(--am-border);
   border-radius: 4px;
   padding: 10px;
   overflow-x: auto;
 }
 
 code {
-  background-color: #f8f9fa;
+  background-color: var(--am-surface);
   padding: 2px 4px;
   border-radius: 3px;
   font-size: 0.9em;
@@ -150,19 +175,19 @@ code {
 .math.display {
   margin: 1.5em 0;
   padding: 1em;
-  background-color: #f5f5f5;
+  background-color: var(--am-surface-alt);
   border-radius: 4px;
   overflow-x: auto;
 }
 
 /* Links */
 a {
-  color: #007bff;
+  color: var(--am-link);
   text-decoration: none;
 }
 
 a:hover {
-  color: #0056b3;
+  color: var(--am-link-hover);
   text-decoration: underline;
 }
 
@@ -187,15 +212,15 @@ a:hover {
 .page-footer {
   margin-top: 40px;
   padding-top: 20px;
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid var(--am-border);
   font-size: 0.9em;
-  color: #6c757d;
+  color: var(--am-muted);
 }
 
 /* Practice exercise boxes */
 .practice-box {
-  background-color: #e7f3ff;
-  border-left: 4px solid #007bff;
+  background-color: var(--am-practice-box);
+  border-left: 4px solid var(--am-accent);
   padding: 15px;
   margin: 20px 0;
   border-radius: 4px;
@@ -215,3 +240,186 @@ a:hover {
     padding: 10px;
   }
 }
+
+/* ============================================================
+   Teaching callouts — see plans/chapter_standards.md
+   Nine boxes, each with one purpose. Colours here encode what
+   the READER SHOULD DO with the box; they are deliberately not
+   the manim role palette, which encodes what a quantity IS.
+   ============================================================ */
+
+:root {
+  --am-key:        #4c4b9e;   /* Key Equation — indigo, distinct from all 5 Quarto hues */
+  --am-key-bg:     #edecf7;
+  --am-key-hd:     #dedcf1;
+  --am-derive:     #9aa2ab;   /* Derivation — recessive grey */
+  --am-derive-bg:  #f6f7f8;
+  --am-practice:   #0f8b8d;   /* In Practice — teal */
+  --am-practice-bg:#e8f4f4;
+  --am-beyond:     #8a8f98;   /* Beyond This Book — a signpost, not content */
+  --am-beyond-bg:  #f7f8f9;
+  --am-define:     #9c7a54;   /* Definition — sepia, a glossary in the margin */
+  --am-define-bg:  #faf6f0;
+  --am-define-hd:  #7a5c3a;
+  --am-uc:         #b3261e;   /* Under Construction — red, status not content */
+  --am-uc-bg:      #fdecea;
+  --am-uc-hd:      #fadbd7;
+}
+
+/* ---------- Key Equation: the heaviest object on the page ---------- */
+.callout.key-equation.callout-style-default {
+  border-left: 7px solid var(--am-key);
+  background-color: var(--am-key-bg);
+  border-radius: 4px;
+}
+.callout.key-equation .callout-header {
+  background-color: var(--am-key-hd);
+  color: var(--am-key);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.callout.key-equation .callout-icon-container { display: none; }  /* an alarm icon is wrong here */
+.callout.key-equation .callout-body { font-size: 1.02em; }
+.callout.key-equation .callout-body .math.display,
+.callout.key-equation .callout-body .katex-display {
+  font-size: 1.12em;
+  margin: 0.9em 0;
+}
+
+/* ---------- Derivation: present, earned, and skippable ---------- */
+.callout.derivation.callout-style-default {
+  border-left: 4px solid var(--am-derive);
+  background-color: var(--am-derive-bg);
+}
+.callout.derivation .callout-header {
+  background-color: transparent;
+  color: #5f6772;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+.callout.derivation .callout-body {
+  font-size: 0.94em;
+  color: #495057;
+}
+
+/* ---------- Under Construction: the loudest thing on the site ----------
+   Deliberately red and deliberately not one of the teaching callout styles.
+   It is a notice about the book's status, not about its content. */
+.callout.under-construction.callout-style-default {
+  border-left: 6px solid var(--am-uc);
+  background-color: var(--am-uc-bg);
+  border-radius: 4px;
+}
+.callout.under-construction .callout-header {
+  background-color: var(--am-uc-hd);
+  color: var(--am-uc);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.callout.under-construction .callout-icon-container { display: none; }
+.callout.under-construction .callout-body { font-size: 1.0em; }
+
+/* ---------- Definition: reference furniture, calm and findable ----------
+   Deliberately quieter than the teaching callouts. A reader scans past these
+   until the moment they need one, so they must be recognisable at a glance
+   without competing with a Key Equation for attention. */
+.callout.definition.callout-style-default {
+  border-left: 4px solid var(--am-define);
+  background-color: var(--am-define-bg);
+  border-radius: 4px;
+}
+.callout.definition .callout-header {
+  background-color: transparent;
+  color: var(--am-define-hd);
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+.callout.definition .callout-icon-container { display: none; }
+.callout.definition .callout-body { font-size: 0.97em; }
+
+/* ---------- Check Yourself: question open, answer collapsed ---------- */
+.callout.check.callout-style-default {
+  border-left: 4px solid #d9822b;
+  border-top: 1px dashed #e6c8a8;
+  border-right: 1px dashed #e6c8a8;
+  border-bottom: 1px dashed #e6c8a8;
+}
+
+/* ---------- Notation Watch ---------- */
+.callout.notation .callout-header { font-family: var(--bs-font-monospace, monospace); font-size: 0.92em; }
+
+/* ---------- In Practice ---------- */
+.callout.practice.callout-style-default {
+  border-left: 4px solid var(--am-practice);
+  background-color: var(--am-practice-bg);
+}
+.callout.practice .callout-header { background-color: transparent; color: #0b6b6d; }
+
+/* ---------- Beyond This Book: a signpost ---------- */
+.callout.beyond.callout-style-default {
+  border-left: 4px dashed var(--am-beyond);
+  background-color: var(--am-beyond-bg);
+}
+.callout.beyond .callout-header { background-color: transparent; color: #5f6772; font-style: italic; }
+.callout.beyond .callout-body { font-size: 0.94em; }
+
+/* ---------- Display math inside a callout keeps the callout's own ground ----------
+   The global .math.display rule paints a grey panel behind every equation. Inside a
+   Key Equation or Derivation box that panel fights the box's background, so drop it. */
+.callout .callout-body .math.display {
+  background-color: transparent;
+  padding: 0.25em 0;
+}
+
+/* ============================================================
+   Dark theme (darkly). Quarto sets .quarto-dark on <body>.
+
+   Every surface token from the top of this file is re-pointed
+   here. Without this block the light greys above (table
+   striping, code panels, display-math panels, callout fills)
+   are painted under darkly's light body text and nothing is
+   readable — see plans/chapter_standards.md §5.
+   ============================================================ */
+.quarto-dark {
+  /* teaching callouts */
+  --am-key-bg:     #23234a;
+  --am-key-hd:     #2e2e5e;
+  --am-derive-bg:  #22262b;
+  --am-practice-bg:#12312f;
+  --am-beyond-bg:  #202428;
+  --am-define-bg:  #2a241c;
+  --am-define-hd:  #d0ac7c;
+  --am-uc-bg:      #3a1512;
+  --am-uc-hd:      #4d1c18;
+
+  /* surfaces */
+  --am-surface:      #2b3035;
+  --am-surface-alt:  #262b30;
+  --am-stripe:       #2a2f34;
+  --am-stripe-hover: #343a40;
+  --am-border:       #454d55;
+
+  /* text */
+  --am-heading-2:    #dee2e6;
+  --am-heading-3:    #ced4da;
+  --am-muted:        #adb5bd;
+  --am-link:         #6ea8fe;
+  --am-link-hover:   #9ec5fe;
+  --am-accent:       #375a7f;   /* darkly's primary; used for the h1 rule and table header */
+
+  /* base Quarto callouts */
+  --am-tip-bg:       #14301f;   --am-tip-fg:       #7fd39a;
+  --am-note-bg:      #12303a;   --am-note-fg:      #74d3ea;
+  --am-important-bg: #3a2f10;   --am-important-fg: #ffd970;
+  --am-warning-bg:   #3a1a1f;   --am-warning-fg:   #f5a3ad;
+  --am-practice-box: #16283a;
+}
+.quarto-dark .callout.key-equation.callout-style-default { border-left-color: #9b99e8; }
+.quarto-dark .callout.key-equation .callout-header       { color: #c9c7f5; }
+.quarto-dark .callout.derivation .callout-header         { color: #a9b1ba; }
+.quarto-dark .callout.derivation .callout-body           { color: #c3c9d0; }
+.quarto-dark .callout.practice .callout-header           { color: #57c7c9; }
+.quarto-dark .callout.beyond .callout-header             { color: #a9b1ba; }
+.quarto-dark .callout.definition.callout-style-default   { border-left-color: #c9a678; }
+.quarto-dark .callout.under-construction.callout-style-default { border-left-color: #f2867c; }
+.quarto-dark .callout.under-construction .callout-header       { color: #ffb4ab; }

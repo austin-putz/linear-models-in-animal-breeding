@@ -1,0 +1,225 @@
+---
+title: "CHAPTER TITLE"
+---
+
+<!--
+  Chapter skeleton. Copy to chapters/NN-slug.qmd and replace everything in CAPS.
+  The standards this implements: plans/chapter_standards.md (structure, callouts)
+                                 plans/pedagogical_order.md (order of presentation)
+  Every callout below appears exactly once as a live example. Delete the ones
+  this chapter does not need — the required ones are marked REQUIRED.
+  Budget: 15 boxes maximum per chapter.
+
+  THE ORDER OF THE SECTIONS BELOW IS THE STANDARD. Numbers before symbols:
+  the reader meets every object as literal numbers, solves with them, and only
+  then is given the general form. Do not move "The general form" earlier, and
+  do not let a Key Equation box be the first sight of its own content.
+-->
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **VERB** the **OBJECT** — copied verbatim from `CHAPTERS.md`
+2. **VERB** the **OBJECT**
+3. **VERB** the **OBJECT**
+
+<!-- 3-5 items. Verb first. Never "understand" or "be familiar with" —
+     if it can't be tested by an exercise in this chapter, it isn't an objective. -->
+:::
+
+*Assumes Chapter N (**SYMBOL**) and Chapter N (**SYMBOL**).*
+
+## Why WHAT THIS CHAPTER DOES
+
+<!-- The problem, in breeding terms, before any algebra. A reader who stops
+     after this section should still know what question the chapter answers. -->
+
+<!-- Chapter-opener clip, if this chapter has one:
+{{< animation chNN-opener caption="ONE SENTENCE" >}} -->
+
+::: {.callout-note .practice}
+## In Practice — WHERE
+
+WHAT A REAL EVALUATION DOES WITH THIS. Name the organisation, the species, the scale.
+:::
+
+## The data
+
+<!-- 5-10 animals. Species named. Read from data/, never inlined (CLAUDE.md). -->
+
+```{r}
+#| label: load-data
+#| message: false
+library(Matrix)
+dat <- read.csv(here::here("data", "chNN-DATASET.csv"))
+knitr::kable(dat)
+```
+
+TWO SENTENCES ON WHY THIS TRAIT AND THIS SPECIES. Check the reserved-trait table in
+`CLAUDE.md` before choosing.
+
+## The matrices for these ANIMALS
+
+<!-- BEAT 6. Literal numbers only. No general dimensions, no Tier 1 boxes, no
+     symbol that is not a name for an array already printed on this page.
+     Wrong: "Let X be the n x p incidence matrix of fixed effects."
+     Right: print the array, say what each row and column is, then: "Call this X." -->
+
+Every animal is in the same contemporary group and is either a barrow or a gilt, so each record
+needs two indicators:
+
+$$
+\begin{bmatrix} 1 & 0 \\ 1 & 0 \\ 1 & 1 \\ \vdots & \vdots \end{bmatrix}
+$$
+
+N rows, one per record; two columns, one per thing being estimated. Call this $\mathbf{X}$.
+
+<!-- Repeat for Z, A-inverse, alpha. Same discipline each time. -->
+
+::: {.callout-note .definition}
+## Definition — TERM
+
+WHAT IT IS, in one or two plain sentences. The formal condition second, if it differs.
+
+**Why it matters.** What goes wrong if you do not know this, and the chapter where it returns.
+
+<!-- Goes immediately AFTER the term has been met in context, never before.
+     Outside the 15-box cap. Only for vocabulary the reader is held to later —
+     a symbol defined on first use is prose, not a box. -->
+:::
+
+::: {.callout-note .notation}
+## Notation Watch — SYMBOL
+
+Some texts write X where this book writes Y. WHY THE DIFFERENCE EXISTS. Appendix A is
+authoritative for this book.
+
+<!-- Only for genuine conflicts in the literature. Defining a symbol on first
+     use is prose, not a box. -->
+:::
+
+## Solving by hand
+
+<!-- BEAT 7. Tier 2 arithmetic, every step shown. Board-work clips go at the
+     hard steps — where the difficulty is a SEQUENCE the page cannot carry.
+     Where a clip exists, it is the instance and the prose does not re-narrate
+     the steps. -->
+
+<!-- {{< animation chNN-STEP caption="ONE SENTENCE" >}} -->
+
+::: {.callout-warning}
+## Common Mistake — WHAT
+
+THE ERROR STUDENTS ACTUALLY MAKE, what it looks like when it happens, and how to catch it.
+:::
+
+::: {.callout-caution .check collapse="true"}
+## Check Yourself
+
+<!-- Sits HERE: after the worked instance, before the general form. The one
+     point in the chapter where a prediction is possible and not yet spoiled. -->
+
+You solved this for N animals and got an M x M system. Before you read on: for 600 animals in 12
+contemporary groups, how large is the system, and which block grew?
+
+**Answer.** THE ANSWER, plus the one-line reason it is the answer.
+:::
+
+## The general form
+
+<!-- BEAT 8. The beat that gets dropped under deadline. Do not drop it: without
+     it the reader has learned an instance, not a model. -->
+
+<!-- THE PATTERN PARAGRAPH. Three questions, in this order, in 3-8 lines.
+     Delete these comments, not the paragraph.
+       1. What in that calculation depended on the particular numbers?
+       2. What depended on the shape of the data?
+       3. What would have been identical for ANY dataset?
+     Question 3's answer, written out, IS the Key Equation below. -->
+
+The WEIGHTS were these animals' — change them and the solutions change. The size of the system was
+set by NUMBER OF ANIMALS and NUMBER OF GROUPS. But the *arrangement* — WHAT — would have been
+identical for six animals or six million.
+
+::: {.callout-important .key-equation}
+## Key Equation — NAME OF THE RESULT {#eq-LABEL}
+
+$$
+\text{THE EQUATION}
+$$ {#eq-LABEL-math}
+
+**In words:** ONE SENTENCE SAYING WHAT IT DOES, with no symbols in it.
+
+<!-- Tier 1. 1-3 per chapter. An equation label means Tier 1 and nothing else
+     in the chapter carries one. CHECK BEFORE SHIPPING: is every symbol in this
+     box one the reader has already seen carrying a number? If not, the chapter
+     is written backwards. -->
+:::
+
+::: {.callout-note .derivation collapse="true"}
+## Derivation — WHAT IS DERIVED (optional)
+
+Skip this on a first read. You already have the result above; this only shows that it holds for
+every dataset and not just the one you solved.
+
+THE DERIVATION. If it runs past about a page, put it in an appendix and leave a
+four-line sketch here with a cross-reference.
+
+<!-- Tier 3, and it goes AFTER the box, not before. -->
+:::
+
+## What the answer means
+
+<!-- BEAT 9. The other beat most often dropped, and the one students most need.
+     What would a breeder do differently because of these numbers? Which animal
+     do you keep? -->
+
+## The same model in R
+
+```{r}
+#| label: by-hand-in-r
+# Explicit matrix code first: build every matrix, no shortcuts.
+```
+
+```{r}
+#| label: with-a-package
+# Then the one-line package call. It must reproduce the hand answer exactly.
+```
+
+The hand solution and the package solution agree to N decimal places.
+
+::: {.callout-tip}
+## In R — WHAT
+
+THE R-SPECIFIC TRAP OR IDIOM. Keep it about R, not about the model.
+:::
+
+## Scaling up
+
+<!-- Same trait, same model, ~2,000 animals. Show that nothing conceptual changed. -->
+
+::: {.callout-note .beyond}
+## Beyond This Book — TOPIC
+
+One or two sentences on the genomic or large-scale successor to what this chapter
+teaches, and where it is covered. Do not teach it here.
+:::
+
+## Key equations
+
+| | Equation | Where |
+|---|---|---|
+| NAME | @eq-LABEL | §SECTION |
+
+<!-- Every Tier 1 box in this chapter, one line each. These also feed the
+     key-equation index in Appendix A. -->
+
+## Exercises
+
+<!-- Count per CHAPTERS.md. Every learning objective is tested by at least one.
+     Solutions go to appendices/H-solutions.qmd, not here. -->
+
+1. EXERCISE
+2. EXERCISE

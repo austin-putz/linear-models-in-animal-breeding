@@ -1,0 +1,26 @@
+---
+title: "ANOVA and Henderson's Methods"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Estimate** variance components from a balanced half-sib design by ANOVA
+2. **Compute** heritability and its standard error by hand
+3. **Describe** Henderson's Methods I, II, and III and their scopes
+4. **Show** how unbalanced data breaks the ANOVA approach
+5. **Explain** why these methods were superseded
+:::
+
+*Assumes Ch 3, Ch 7.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Where variance components came from before REML, and why they had to be replaced.
+:::

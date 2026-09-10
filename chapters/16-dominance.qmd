@@ -1,0 +1,26 @@
+---
+title: "Dominance Models"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Distinguish** breeding value from genotypic value
+2. **Build** the dominance relationship matrix **D** from a pedigree
+3. **Set** up and solve an animal model with additive and dominance effects
+4. **Explain** why dominance and common environment confound
+5. **Use** predicted dominance for mate allocation
+:::
+
+*Assumes Ch 4, Ch 6.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Genotypic value, not just breeding value — and the one place non-additive effects change a decision.
+:::

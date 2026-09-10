@@ -1,0 +1,11 @@
+---
+title: "R code reference"
+---
+
+::: {.callout-warning}
+## Appendix in progress
+
+This appendix has not been written yet.
+
+**Contents.** Common operations, indexed by task
+:::

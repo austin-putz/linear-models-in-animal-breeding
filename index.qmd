@@ -1,5 +1,15 @@
 # Welcome {.unnumbered}
 
+::: {.callout-important .under-construction}
+## Under Construction
+
+**This book is being written, and most of it is not finished yet.** Chapter 1 is drafted; every
+other chapter and appendix is a placeholder showing only its title and learning objectives, so you
+can see the shape of the whole book and follow along as it fills in.
+
+Anything you read here may change. Do not cite it yet.
+:::
+
 Welcome to **Animal Models: A Graduate Introduction to Mixed Model Equations in Breeding and Genetics**.
 
 ## About This Book
@@ -10,10 +20,17 @@ This book provides a hands-on, example-driven introduction to mixed model equati
 
 Our pedagogical philosophy emphasizes:
 
-- **Start Small**: Every model begins with a toy dataset you can solve by hand to build intuition
-- **Show Your Work**: Step-by-step derivations with every symbol defined and dimensions clearly stated
-- **Code Included**: R implementations are provided (hidden by default, click "Show code" to reveal)
-- **Practice Exercises**: Callouts throughout with extensions and practice problems
+- **Start Small**: every model begins with a toy dataset of five to ten animals that you can solve
+  by hand
+- **Numbers Before Symbols**: the operation is performed on real numbers first, and the general
+  formula arrives afterwards as a name for something you have already done — never before it
+- **Show Every Step**: every symbol is introduced as a name for something already on the page,
+  and the dimensions of every matrix are stated
+- **Hand First, Then R**: solve it with a calculator, then reproduce the identical answer in R,
+  then see the one-line package call that does the same thing
+- **Code You Can Read**: the R is shown, not folded away, and is written to be retyped
+- **Check Yourself**: short predict-then-check questions, placed where you could have guessed the
+  answer but have not been told it yet
 
 ## What You'll Learn
 
@@ -22,54 +39,170 @@ By working through this book, you will:
 - Understand the theory and practice of mixed model equations (MME)
 - Master pedigree-based relationship matrices and their inverses
 - Implement animal models for single and multiple traits
+- Prepare data properly: contemporary groups, connectedness, and pedigree quality
 - Model longitudinal data with random regressions and reaction norms
-- Apply genomic prediction methods (GBLUP, ssGBLUP, Bayesian alphabet)
-- Estimate variance components using ANOVA, REML, AI-REML, and Bayesian methods
-- Handle categorical traits with threshold models
-- Optimize computations for large-scale genetic evaluations
+- Handle categorical traits with threshold models and survival analysis
+- Fit non-additive, multibreed, and crossbred models
+- Estimate variance components using ANOVA, REML, AI-REML, and Gibbs sampling
+- Validate a genetic evaluation for accuracy, bias, and dispersion
 
 ## Prerequisites
 
 Students using this book should have:
 
-- Basic linear algebra (matrix multiplication, inversion, eigenvalues)
 - Elementary statistics (linear regression, variance components, distributions)
 - R programming experience (helpful but not strictly required - all code is explained)
 
-## Book Structure
+No prior linear algebra is assumed. Chapter 1 develops every matrix operation the book uses, and
+tells you which sections each later chapter depends on.
 
-The book is organized into six parts:
+## Scope
 
-- **Part I (Chapters 1-3)**: Foundations - introduction, MME basics, and relationship matrices
-- **Part II (Chapters 4-7)**: Core animal models - sire model, animal model, repeatability, maternal effects
-- **Part III (Chapters 8-11)**: Multi-trait and longitudinal models - correlated traits, test-day, random regression, reaction norms
-- **Part IV (Chapters 12-13)**: Categorical traits - threshold models and survival analysis
-- **Part V (Chapters 14-17)**: Genomic prediction - G matrix, GBLUP, ssGBLUP, Bayesian methods
-- **Part VI (Chapters 18-20)**: Variance estimation and computing - REML, AI-REML, Bayesian, model comparison, computational strategies
+This book covers the **pedigree-based** mixed model. Genomic selection - the genomic relationship matrix, GBLUP, single-step, and the Bayesian alphabet - is a large enough subject to need its own volume, and is deferred to a companion book rather than compressed into a chapter here. Large-scale computation is likewise deferred, apart from Chapter 24, which exists so that readers understand why production evaluations are not solved the way the examples in this book are.
 
-Six appendices provide reference material on notation, matrix operations, R code, BLUPF90, datasets, and solutions to practice exercises.
+## The chapters
+
+Every chapter is listed below, and the sidebar on the left carries the same list on every page.
+**Chapter 6 is the centre of the book** — everything in Part I builds toward it, and everything
+after it is a variation on it.
+
+Chapters marked ✏️ are drafted. The rest are placeholders carrying their learning objectives only.
+
+### Part I — Background {.unnumbered}
+
+| | Chapter | What it does |
+|---|---|---|
+| 1 ✏️ | [Matrix Algebra for Animal Breeders](chapters/01-matrix-algebra.qmd) | Only the linear algebra the book actually uses, with a map of what is needed where |
+| 2 | [Linear Models](chapters/02-linear-models.qmd) | Fixed effects only. Build **X**, solve the normal equations, confront non-full-rank |
+| 3 | [Mixed Models Without Relationships](chapters/03-mixed-models.qmd) | **Z** and random effects, with no genetics attached yet |
+| 4 | [Pedigrees and Relationship Matrices](chapters/04-relationship-matrices.qmd) | **A** and **A⁻¹** — the object that makes the animal model work |
+| 5 | [Data Preparation and Connectedness](chapters/05-data-preparation.qmd) | What goes wrong before a model is ever fitted. Where real analyses fail |
+
+### Part II — Core Animal Models {.unnumbered}
+
+| | Chapter | What it does |
+|---|---|---|
+| 6 | [**The Animal Model**](chapters/06-animal-model.qmd) | The central chapter. Solve the full MME with **A⁻¹**, then interpret what came out |
+| 7 | [Equivalent and Reduced Models](chapters/07-reduced-models.qmd) | Sire, sire–MGS, and reduced animal models as data reduction |
+| 8 | [Random Environmental Effects](chapters/08-random-environmental.qmd) | Repeatability and common environment: a second random effect that is not genetic |
+| 9 | [Genetic Groups](chapters/09-genetic-groups.qmd) | Unknown parent groups, and an honest statement of what they get wrong |
+| 10 | [Maternal Effects Models](chapters/10-maternal-effects.qmd) | Two correlated genetic effects on one phenotype |
+
+### Part III — Advanced Model Structures {.unnumbered}
+
+| | Chapter | What it does |
+|---|---|---|
+| 11 | [Multivariate Models](chapters/11-multivariate.qmd) | Several traits at once; the Kronecker product earns its keep |
+| 12 | [Longitudinal Data and Random Regression](chapters/12-random-regression.qmd) | Traits measured along a trajectory |
+| 13 | [Social Interaction Models](chapters/13-social-interaction.qmd) | An animal's phenotype depends on its group-mates' genes |
+
+### Part IV — Categorical and Time-to-Event Traits {.unnumbered}
+
+| | Chapter | What it does |
+|---|---|---|
+| 14 | [Threshold Models](chapters/14-threshold-models.qmd) | Binary and ordered categorical traits — same model, more thresholds |
+| 15 | [Survival Analysis](chapters/15-survival-analysis.qmd) | Time-to-event data and censoring |
+
+### Part V — Non-additive Genetic Effects {.unnumbered}
+
+| | Chapter | What it does |
+|---|---|---|
+| 16 | [Dominance Models](chapters/16-dominance.qmd) | Genotypic value, not just breeding value |
+| 17 | [Epistasis Models](chapters/17-epistasis.qmd) | Why, in practice, nearly everything comes out additive |
+
+### Part VI — Multibreed and Crossbred Evaluation {.unnumbered}
+
+| | Chapter | What it does |
+|---|---|---|
+| 18 | [Multibreed Models](chapters/18-multibreed.qmd) | More than one breed in a single evaluation |
+| 19 | [Crossbred Evaluation and CCPS](chapters/19-crossbred-ccps.qmd) | Selecting purebreds for crossbred performance |
+
+### Part VII — Variance Component Estimation {.unnumbered}
+
+| | Chapter | What it does |
+|---|---|---|
+| 20 | [ANOVA and Henderson's Methods](chapters/20-anova-henderson.qmd) | Where variance components came from, and why they had to be replaced |
+| 21 | [REML](chapters/21-reml.qmd) | The workhorse |
+| 22 | [Bayesian Estimation via Gibbs Sampling](chapters/22-gibbs-sampling.qmd) | The third route to the same components, and the one that gives full uncertainty |
+
+### Part VIII — Validation and Computation {.unnumbered}
+
+| | Chapter | What it does |
+|---|---|---|
+| 23 | [Validating Genetic Evaluations](chapters/23-validation.qmd) | How do you know the evaluation works? |
+| 24 | [Solving the MME at Scale](chapters/24-computing.qmd) | What production software actually does. Deliberately thin |
+
+### Appendices {.unnumbered}
+
+[A — Notation Reference](appendices/A-notation-reference.qmd) ·
+[B — BLUP Derivation](appendices/B-blup-derivation.qmd) ·
+[C — Inbreeding Algorithms](appendices/C-inbreeding-algorithms.qmd) ·
+[D — Legendre Polynomials](appendices/D-legendre-polynomials.qmd) ·
+[E — Deregression](appendices/E-deregression.qmd) ·
+[F — R Code Reference](appendices/F-r-code-reference.qmd) ·
+[G — Datasets](appendices/G-datasets.qmd) ·
+[H — Solutions to Exercises](appendices/H-solutions.qmd) ·
+[I — BLUPF90 Guide](appendices/I-blupf90-guide.qmd)
+
+**Appendix A is the one to bookmark.** It is the authoritative notation reference and carries an
+index of every Key Equation in the book, one line each — the single page to revise from.
 
 ## How to Navigate
 
-Chapters 1-3 form the essential foundation and should be read first. After that, you can follow different paths depending on your interests:
+Chapters 1-6 form the essential foundation and should be read in order. After that, you can follow different paths depending on your interests:
 
-- **Linear path** (comprehensive): Read chapters sequentially
-- **Genomics-focused**: Ch 1-3, 5, 8, 14-17, 18, 20
-- **Longitudinal models**: Ch 1-3, 5-6, 9-11, 19
+- **Linear path** (comprehensive): read chapters sequentially
+- **Longitudinal models**: Ch 1-6, 8, 11-12, 21
+- **Categorical and fitness traits**: Ch 1-6, 14-15, 22
+- **Crossbreeding**: Ch 1-6, 9, 11, 16, 18-19
+- **Variance components**: Ch 1-6, 20-22, 23
 
-See Chapter 1 for a detailed dependency graph showing prerequisites for each chapter.
+Each chapter lists its prerequisites at the start.
 
-## Using This Book
+## How to read a chapter
 
-All code chunks are collapsed by default to keep focus on concepts and mathematics. Click the "Show code" button on any chunk to see the R implementation. The "Code" menu in the top-right provides options to show all code at once or download source files.
+Every chapter is built the same way, so once you have read one you know where everything is.
 
-Datasets referenced in examples are available in the `data/` directory of the [book repository](https://github.com/austinputz/animal-models-book).
+**The order is always the same.** A chapter opens on a small dataset, works it in literal numbers,
+and only then writes the general form. A formula never arrives before the worked example that
+earns it. If you want the rule without the walk-through, skip to the boxed equation — but the
+numbers above it are where the understanding actually comes from.
+
+**Coloured boxes mean different things.** The colour tells you what to do with the box:
+
+| Box | What it is |
+|---|---|
+| **Key Equation** | The one to memorise. One to three per chapter, and nothing else is boxed |
+| **Derivation** | Optional, collapsed. Why the result holds in general. Skip it on a first read |
+| **Check Yourself** | A five-second self-test. The question is visible, the answer is hidden — try it before opening |
+| **Common Mistake** | The error students actually make, and how to catch it |
+| **In R** | An R-specific trap or idiom |
+| **Notation Watch** | Where the literature disagrees with itself |
+| **In Practice** | What a real national evaluation does |
+| **Beyond This Book** | A scope boundary, and where the topic is covered instead |
+
+**Displayed equations come in three kinds.** A boxed, numbered equation is one you should be able
+to write from memory. Ordinary display maths in the flow is something to follow with the book
+open. Anything inside a collapsed grey Derivation box is optional.
+
+**The R is meant to be typed.** Code is shown by default, not folded away, and every chunk prints
+the same number the hand calculation produced so you can check the two against each other. Open an
+R session alongside the book and work down the page. The "Code" menu at the top right will
+download the source of any chapter.
+
+**Some sections have short animations.** Where a calculation is a *sequence* — a row walking
+against a column, a matrix filling in cell by cell — there is a short silent clip showing the
+steps. They are never the only place something is explained: everything in a clip is also in the
+text, so nothing is lost if you skip them or are reading in print.
+
+Datasets referenced in examples are available in the `data/` directory of the
+[book repository](https://github.com/austin-putz/animal-models-book).
 
 ## Citation
 
 If you use this book in your research or teaching, please cite as:
 
-> Putz, Austin (2025). *Animal Models: A Graduate Introduction to Mixed Model Equations in Breeding and Genetics*. https://austinputz.github.io/animal-models-book/
+> Putz, Austin (2025). *Animal Models: A Graduate Introduction to Mixed Model Equations in Breeding and Genetics*. https://austin-putz.github.io/animal-models-book/
 
 ## License
 
@@ -79,12 +212,14 @@ This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareA
 
 ## Feedback and Contributions
 
-Found a typo, error, or have a suggestion? Please [open an issue](https://github.com/austinputz/animal-models-book/issues) on GitHub or submit a pull request. This book benefits from community input and we welcome contributions.
+Found a typo, error, or have a suggestion? Please [open an issue](https://github.com/austin-putz/animal-models-book/issues) on GitHub or submit a pull request. This book benefits from community input and we welcome contributions.
 
 ## Acknowledgments
 
-This book has been developed with support from [Your Institution/Funding]. Special thanks to the students who provided feedback on early drafts and to the open-source community for the excellent tools (Quarto, R, tidyverse) that made this book possible.
+Special thanks to the students who provided feedback on early drafts, and to the open-source
+community for the tools that made this book possible — Quarto, R, the `Matrix` package, and
+Manim for the animations.
 
 ---
 
-Ready to begin? Start with [Chapter 1: Introduction to Animal Models](chapters/01-introduction.qmd).
+Ready to begin? Start with [Chapter 1: Matrix Algebra for Animal Breeders](chapters/01-matrix-algebra.qmd).

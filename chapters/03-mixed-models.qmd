@@ -1,0 +1,26 @@
+---
+title: "Mixed Models Without Relationships"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Distinguish** fixed from random effects and state when each is appropriate
+2. **Build** **Z** for a random classification effect
+3. **Assemble** and solve the MME with a variance ratio α
+4. **Contrast** BLUE of fixed effects with BLUP of random effects, and explain shrinkage
+5. **Reproduce** the hand solution with `lmer()`
+:::
+
+*Assumes Ch 2.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Introduce **Z** and random effects with no genetics attached. **G = I**.
+:::

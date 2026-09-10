@@ -1,0 +1,26 @@
+---
+title: "Epistasis Models"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Define** additive×additive, additive×dominance, and dominance×dominance variance
+2. **Build** epistatic relationship matrices as Hadamard products of **A** and **D**
+3. **Set** up a model containing an epistatic term
+4. **Explain** why epistatic variance is nearly unidentifiable from pedigree data
+5. **Justify** the additive model used throughout the rest of the book
+:::
+
+*Assumes Ch 1 (§1.7), Ch 16.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Capstone to Part V, answering the question the whole book raises: why is everything else additive?
+:::

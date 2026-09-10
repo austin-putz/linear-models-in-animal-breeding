@@ -52,3 +52,17 @@ __pycache__/
 # Node (if used)
 node_modules/
 package-lock.json
+
+# Manim intermediates. The rendered artefacts in assets/video/ ARE committed;
+# manim's own working tree is not.
+manim/media/
+manim/__pycache__/
+manim/ambook/__pycache__/
+manim/venv/
+
+**/*.quarto_ipynb
+
+# knitr cache and figure directories, produced by `cache: true` in _quarto.yml.
+# Generated output, never source.
+*_cache/
+*_files/

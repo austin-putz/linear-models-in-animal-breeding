@@ -1,68 +1,87 @@
 project:
   type: book
   output-dir: _book
+  resources:
+    # Manim clips and their poster stills. Quarto finds the mp4 from the
+    # <source> tag but not the poster, so the directory is declared here.
+    - assets/video/**
 
 book:
   title: "Animal Models: A Graduate Introduction to Mixed Model Equations"
-  subtitle: "From Hand Calculations to Genomic Prediction"
+  subtitle: "From Hand Calculations to National Evaluations"
   author: "Austin Putz"
   date: today
 
   reader-mode: true
-  repo-url: https://github.com/austinputz/animal-models-book
+  repo-url: https://github.com/austin-putz/animal-models-book
   repo-actions: [edit, issue]
   search: true
   page-navigation: true
+  # Puts a download link for the built PDF in the site navbar.
+  downloads: [pdf]
 
   chapters:
     - index.qmd
 
-    - part: "Part I: Foundations"
+    - part: "Part I: Background"
       chapters:
-        - chapters/01-introduction.qmd
-        - chapters/02-mme-primer.qmd
-        - chapters/03-relationships.qmd
+        - chapters/01-matrix-algebra.qmd
+        - chapters/02-linear-models.qmd
+        - chapters/03-mixed-models.qmd
+        - chapters/04-relationship-matrices.qmd
+        - chapters/05-data-preparation.qmd
 
     - part: "Part II: Core Animal Models"
       chapters:
-        - chapters/04-sire-model.qmd
-        - chapters/05-animal-model.qmd
-        - chapters/06-repeatability.qmd
-        - chapters/07-maternal-effects.qmd
+        - chapters/06-animal-model.qmd
+        - chapters/07-reduced-models.qmd
+        - chapters/08-random-environmental.qmd
+        - chapters/09-genetic-groups.qmd
+        - chapters/10-maternal-effects.qmd
 
-    - part: "Part III: Multi-trait and Longitudinal Models"
+    - part: "Part III: Advanced Model Structures"
       chapters:
-        - chapters/08-multi-trait.qmd
-        - chapters/09-test-day-models.qmd
-        - chapters/10-random-regression.qmd
-        - chapters/11-reaction-norms.qmd
+        - chapters/11-multivariate.qmd
+        - chapters/12-random-regression.qmd
+        - chapters/13-social-interaction.qmd
 
-    - part: "Part IV: Categorical and Threshold Models"
+    - part: "Part IV: Categorical and Time-to-Event Traits"
       chapters:
-        - chapters/12-threshold-models.qmd
-        - chapters/13-survival-traits.qmd
+        - chapters/14-threshold-models.qmd
+        - chapters/15-survival-analysis.qmd
 
-    - part: "Part V: Genomic Prediction"
+    - part: "Part V: Non-additive Genetic Effects"
       chapters:
-        - chapters/14-genomic-relationships.qmd
-        - chapters/15-gblup.qmd
-        - chapters/16-single-step.qmd
-        - chapters/17-bayesian-alphabet.qmd
+        - chapters/16-dominance.qmd
+        - chapters/17-epistasis.qmd
 
-    - part: "Part VI: Estimation and Computing"
+    - part: "Part VI: Multibreed and Crossbred Evaluation"
       chapters:
-        - chapters/18-variance-components.qmd
-        - chapters/19-variance-bayesian-aireml.qmd
-        - chapters/20-model-comparison-computing.qmd
+        - chapters/18-multibreed.qmd
+        - chapters/19-crossbred-ccps.qmd
+
+    - part: "Part VII: Variance Component Estimation"
+      chapters:
+        - chapters/20-anova-henderson.qmd
+        - chapters/21-reml.qmd
+        - chapters/22-gibbs-sampling.qmd
+
+    - part: "Part VIII: Validation and Computation"
+      chapters:
+        - chapters/23-validation.qmd
+        - chapters/24-computing.qmd
 
     - part: "Appendices"
       chapters:
         - appendices/A-notation-reference.qmd
-        - appendices/B-matrix-operations.qmd
-        - appendices/C-r-code-reference.qmd
-        - appendices/D-blupf90-guide.qmd
-        - appendices/E-datasets.qmd
-        - appendices/F-solutions.qmd
+        - appendices/B-blup-derivation.qmd
+        - appendices/C-inbreeding-algorithms.qmd
+        - appendices/D-legendre-polynomials.qmd
+        - appendices/E-deregression.qmd
+        - appendices/F-r-code-reference.qmd
+        - appendices/G-datasets.qmd
+        - appendices/H-solutions.qmd
+        - appendices/I-blupf90-guide.qmd
 
     - references.qmd
 
@@ -70,11 +89,11 @@ book:
     left: "Copyright 2025, Austin Putz"
     right:
       - icon: github
-        href: https://github.com/austinputz/animal-models-book
+        href: https://github.com/austin-putz/animal-models-book
       - text: "License: CC BY-NC-SA 4.0"
 
 bibliography: references.bib
-csl: genetics.csl
+# csl: genetics.csl   # TODO: add genetics.csl to repo, then re-enable
 
 format:
   html:
@@ -82,8 +101,10 @@ format:
       light: cosmo
       dark: darkly
     css: styles/custom.css
-    code-fold: true
-    code-summary: "Show code"
+    # Code is visible by default. The R is teaching material a student reads
+    # and retypes, not an appendix — see the "Code visible" rule in CLAUDE.md.
+    # Individual incidental chunks may set `code-fold: true` with a reason.
+    code-fold: false
     code-tools: true
     code-copy: true
     code-overflow: wrap

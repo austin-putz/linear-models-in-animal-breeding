@@ -1,0 +1,26 @@
+---
+title: "Social Interaction Models"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Explain** how a group-mate's genes become part of an animal's phenotype
+2. **Build** the direct and indirect genetic effect design matrices
+3. **Define** the total breeding value and show why it, not the direct effect, is the selection criterion
+4. **Explain** how group size and composition affect identifiability
+5. **Recognize** when indirect genetic effects and a random group effect are confounded
+:::
+
+*Assumes Ch 3, Ch 6, Ch 11.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** An animal's phenotype depends on its group-mates' genes.
+:::

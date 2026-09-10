@@ -1,0 +1,26 @@
+---
+title: "REML"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **State** the difference between ML and REML and why REML is preferred
+2. **Describe** the EM, Newton–Raphson, and average information algorithms
+3. **Run** AI-REML and interpret its output
+4. **Obtain** standard errors of variance components and of heritability
+5. **Diagnose** convergence failure in multi-trait analyses
+:::
+
+*Assumes Ch 20.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** The workhorse.
+:::

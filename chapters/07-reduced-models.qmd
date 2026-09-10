@@ -1,0 +1,26 @@
+---
+title: "Equivalent and Reduced Models"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Derive** the sire model and state the assumptions that make it an approximation
+2. **Relate** sire EBVs to animal-model EBVs computed on the same data
+3. **Build** the sire–maternal grandsire relationship matrix and its inverse
+4. **Set** up a reduced animal model and back-solve for non-parents
+5. **Judge** when a reduced model is worth the information it discards
+:::
+
+*Assumes Ch 6.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Sire, sire–MGS, and reduced animal models, framed as data reduction and model equivalence rather than as a step backward.
+:::

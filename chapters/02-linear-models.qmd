@@ -1,0 +1,26 @@
+---
+title: "Linear Models"
+---
+
+::: {.callout-note icon=false}
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. **Write** a linear model in matrix form and build **X** for a given design
+2. **Compare** parameterizations and show they give identical fitted values
+3. **Solve** (X'X)⁻X'y by hand and reproduce it with `lm()`
+4. **Explain** estimability and why individual solutions need not be unique
+5. **Interpret** residuals and estimate σ²e
+:::
+
+*Assumes Ch 1.*
+
+::: {.callout-warning}
+## Chapter in progress
+
+This chapter has not been written yet. The objectives above are the contract it will be written
+against — they are taken from `CHAPTERS.md`, which is the outline for the whole book.
+
+**Purpose.** Fixed effects only. Build **X**, solve the normal equations, confront non-full-rank.
+:::
