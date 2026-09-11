@@ -849,6 +849,23 @@ qr(X)$rank         # the two-column X of section 1.7 is full rank
 ncol(X)
 ```
 
+Counting columns is only half the story. Transpose $\mathbf{X}_3$ so that it is $3 \times 4$ —
+three rows, four columns — and ask for the rank again:
+
+```{r}
+#| label: ch01-rank-transpose
+t(X3)
+qr(t(X3))$rank     # still 2
+```
+
+The rank did not change, and it could not have reached 4: a matrix with three rows has at most
+three independent rows, and the number of independent rows always equals the number of
+independent columns. So the rank of any matrix is capped by its **smaller** dimension. For a
+tall design matrix with more records than effects, that cap is the number of columns, which is
+why the check above compared `qr(X3)$rank` with `ncol(X3)`. For a wide matrix with more columns
+than rows the cap is the number of rows — a genotype matrix with 10 animals and 50,000 markers
+has rank at most 10, however many markers it carries.
+
 ::: {.callout-note .definition}
 ## Definition — Linear dependence and rank
 
@@ -856,9 +873,12 @@ A set of columns is **linearly dependent** when at least one of them can be writ
 combination (§1.1) of the others — it adds no information the rest do not already carry. Columns
 that cannot be are **linearly independent**.
 
-The **rank** of a matrix is the number of linearly independent columns it has. A matrix whose rank
-equals its number of columns is **full rank**; one whose rank is smaller is **rank deficient**.
-$\mathbf{X}_3$ has three columns and rank 2, so it is rank deficient.
+The **rank** of a matrix is the number of linearly independent columns it has, which is always
+the same as the number of linearly independent rows. Rank therefore cannot exceed the smaller of
+the two dimensions: for an $n \times p$ matrix, $\text{rank} \le \min(n, p)$. A matrix whose rank
+reaches that bound is **full rank**; one whose rank is smaller is **rank deficient**. For a tall
+matrix ($n > p$), like every design matrix in this book, full rank means rank $= p$ — every column
+independent. $\mathbf{X}_3$ is $4 \times 3$ with rank 2, so it is rank deficient.
 
 **Why it matters.** Rank is what decides whether a model's effects can be estimated at all. In
 animal breeding the answer is routinely no, and rank deficiency is normal rather than exceptional
@@ -1000,6 +1020,197 @@ solve(Gsing)
 **That message is the one to recognise.** "System is exactly singular" is R telling you a column
 of your matrix is redundant. When it appears in a real analysis it almost always means two effects
 in the model cannot be told apart from each other — not that anything is broken.
+
+### Almost singular: the condition number
+
+Singularity is a yes-or-no property, and the determinant tests it. But a matrix can be
+non-singular and still behave almost as badly as a singular one. Take the covariance matrix above
+and lower the genetic correlation from exactly 1 to 0.999:
+
+$$
+\mathbf{G} = \begin{bmatrix} 100 & 99.9 \\ 99.9 & 100 \end{bmatrix},
+\qquad
+\det(\mathbf{G}) = 100(100) - 99.9(99.9) = 10000 - 9980.01 = 19.99
+$$
+
+Not zero. The columns are independent, the rank is 2, and R will invert it without complaint. Now
+use it to solve a system, twice, with two right-hand sides that differ by one per cent in one
+element. First $\mathbf{Gx} = (1, 1)'$:
+
+$$
+\begin{aligned}
+100x_1 + 99.9x_2 &= 1 \\
+99.9x_1 + 100x_2 &= 1
+\end{aligned}
+$$
+
+The two equations are symmetric, so $x_1 = x_2$ and $199.9x_1 = 1$, giving
+$x_1 = x_2 = 0.0050$. Then $\mathbf{Gx} = (1, 1.01)'$:
+
+$$
+\begin{aligned}
+100x_1 + 99.9x_2 &= 1 \\
+99.9x_1 + 100x_2 &= 1.01
+\end{aligned}
+$$
+
+Subtracting the second equation from the first gives $0.1x_1 - 0.1x_2 = -0.01$, so
+$x_1 - x_2 = -0.1$. Adding them gives $199.9(x_1 + x_2) = 2.01$, so $x_1 + x_2 = 0.01006$.
+Together, $x_1 = -0.0450$ and $x_2 = 0.0550$.
+
+Look at what happened. The right-hand side moved by 0.01 in one element — under one per cent of
+its length. The solution went from $(0.0050, 0.0050)'$ to $(-0.0450, 0.0550)'$: ten times
+larger, and one element changed sign. A change of 0.7% in the input became a change of 1000% in
+the output, an amplification of about 1400. Here it is in R — `solve(G, b)` solves
+$\mathbf{Gx} = \mathbf{b}$ directly, and §1.9 says more about it:
+
+```{r}
+#| label: ch01-near-singular
+G <- matrix(c(100, 99.9,
+              99.9, 100), nrow = 2)
+det(G)                          # 19.99 -- not zero, so not singular
+
+x  <- solve(G, c(1, 1))         # the first system
+x2 <- solve(G, c(1, 1.01))      # the second, 1% different in one element
+x
+x2
+```
+
+The amplification is not an accident of these two right-hand sides. Every matrix has a worst-case
+amplification factor, its **condition number**, and R computes it with `kappa()`. The reciprocal,
+`rcond()`, is what `solve()` checks before it agrees to proceed:
+
+```{r}
+#| label: ch01-kappa
+kappa(G, exact = TRUE)          # 1999: input error can be amplified up to ~2000 times
+rcond(G)                        # 1/1999, the reciprocal that solve() inspects
+
+kappa(XtX, exact = TRUE)        # the full-rank X'X of section 1.5, for comparison
+```
+
+The 1400-fold amplification observed above sits below the bound of 1999, as it must. The
+$\mathbf{X}'\mathbf{X}$ of §1.5 has a condition number of about 6: a well-behaved matrix, whose
+solutions move roughly as much as its inputs do.
+
+Push the correlation closer still to 1 and the determinant is still not zero — but `solve()`
+refuses anyway, with a different message from the one above:
+
+```{r}
+#| label: ch01-computationally-singular
+#| error: true
+Gnear <- matrix(c(100, 100 - 1e-14,
+                  100 - 1e-14, 100), nrow = 2)
+det(Gnear)                      # tiny, but not zero
+solve(Gnear)
+```
+
+"Computationally singular" is the second message to recognise. It means the matrix is
+non-singular in exact arithmetic but its condition number is so large — here about $10^{16}$ —
+that in the sixteen or so decimal digits a computer carries, the inverse would be pure rounding
+error. `solve()` declines rather than return nonsense.
+
+::: {.callout-note .definition}
+## Definition — Condition number
+
+The **condition number** of a matrix, written $\kappa(\mathbf{A})$, is the largest factor by
+which a relative change in the right-hand side $\mathbf{b}$ can be amplified into a relative
+change in the solution $\mathbf{x}$ of $\mathbf{Ax} = \mathbf{b}$. It is 1 for the identity
+matrix, infinite for a singular matrix, and a matrix with a large condition number is
+**ill-conditioned**. For the symmetric matrices in this book it equals the largest eigenvalue
+divided by the smallest — §1.13 shows this for $\mathbf{G}$, whose eigenvalues are 199.9 and 0.1.
+
+A working rule: a condition number of $10^k$ costs about $k$ decimal digits of accuracy in the
+solution. Double-precision arithmetic carries about 16, so $\kappa \approx 10^{16}$ is
+indistinguishable from singular, which is exactly what "computationally singular" reports.
+
+**Why it matters.** The determinant tells you whether a system has a unique solution; the
+condition number tells you whether that solution means anything. An ill-conditioned matrix has a
+unique solution that rounding error in the data can move anywhere. In this book it appears when
+two traits have a genetic correlation near $\pm 1$ (Chapter 11), when two fixed effects are nearly
+but not quite confounded — a contemporary group almost every one of whose animals share a sire
+(Chapter 5), and when REML wanders toward the boundary of the parameter space (Chapter 21). It also
+sets the speed of the iterative solvers in Chapter 24: they converge in a number of iterations
+that grows with $\kappa$, which is why they precondition the equations before starting.
+:::
+
+### Improving the condition of a matrix
+
+A condition number is a property of the matrix you built, and most of the time you can build a
+better one. The commonest cause of ill-conditioning in a design matrix is not a subtle
+near-dependence between effects — it is a covariate that was never centred. Take four lambs
+weighed at 180, 182, 185 and 187 days of age and fit a mean plus a linear effect of age:
+
+$$
+\mathbf{X} = \begin{bmatrix} 1 & 180 \\ 1 & 182 \\ 1 & 185 \\ 1 & 187 \end{bmatrix},
+\qquad
+\mathbf{X}'\mathbf{X} = \begin{bmatrix} 4 & 734 \\ 734 & 134718 \end{bmatrix}
+$$
+
+Nothing is redundant here: the age column is not a multiple of the column of ones. But it is
+*nearly* one. Every age is within 4 days of 183.5, so the second column is 183.5 times the
+first plus a small wobble, and the two columns point in almost the same direction. The
+determinant is $4(134718) - 734^2 = 538872 - 538756 = 116$ — small next to the entries of the
+matrix, and the condition number is enormous:
+
+```{r}
+#| label: ch01-uncentred-covariate
+age <- c(180, 182, 185, 187)
+X_age <- cbind(1, age)
+XtX_age <- crossprod(X_age)
+XtX_age
+kappa(XtX_age, exact = TRUE)      # about 160 million
+```
+
+Now subtract the mean age, 183.5, from each age before building $\mathbf{X}$. The model is the
+same — the intercept now means "the fitted weight at 183.5 days" instead of "at 0 days", and the
+slope is unchanged — but the two columns are now at right angles, because the deviations sum to
+zero:
+
+$$
+\mathbf{X}_c = \begin{bmatrix} 1 & -3.5 \\ 1 & -1.5 \\ 1 & 1.5 \\ 1 & 3.5 \end{bmatrix},
+\qquad
+\mathbf{X}_c'\mathbf{X}_c = \begin{bmatrix} 4 & 0 \\ 0 & 29 \end{bmatrix}
+$$
+
+```{r}
+#| label: ch01-centred-covariate
+age_c <- age - mean(age)          # deviations: -3.5, -1.5, 1.5, 3.5
+X_c <- cbind(1, age_c)
+XtX_c <- crossprod(X_c)
+XtX_c
+kappa(XtX_c, exact = TRUE)        # 7.25
+```
+
+From 160 million to 7.25, without changing the fitted values by a single gram. That is the
+first thing to try, and Chapter 5 makes centring covariates a routine step of data preparation.
+The other tools are variations on the same theme, each of which returns in a later chapter:
+
+- **Scale the columns** so their diagonals are comparable — divide each column of $\mathbf{X}$
+  by its standard deviation, or equivalently pre- and post-multiply $\mathbf{X}'\mathbf{X}$ by
+  $\mathbf{D}^{-1/2}$ where $\mathbf{D}$ holds its diagonal. This is what the iterative solvers
+  of Chapter 24 do when they *precondition*, and on its own it takes the uncentred matrix above
+  from 160 million to about 18,000; centring does the rest.
+- **Remove the near-dependence** rather than living with it: merge two contemporary groups that
+  share almost all their animals, or drop a covariate that is nearly a linear function of
+  another. Chapter 5 is where this happens. A near-singular $\mathbf{X}$ is usually telling you
+  the data cannot support two separate effects, and the honest fix is to ask for one.
+- **Add to the diagonal.** Adding a constant to every diagonal element of a symmetric matrix
+  adds it to every eigenvalue, which raises the smallest one proportionally far more than the
+  largest. For $\mathbf{G}$ above, adding 1 to each diagonal takes $\kappa$ from 1999 to 183.
+  This cannot be done casually to $\mathbf{X}'\mathbf{X}$ — it changes the estimates — but it is
+  exactly what the mixed model equations of Chapter 3 do to the random-effects block, where the
+  added term $\mathbf{A}^{-1}\alpha$ is what makes an otherwise singular $\mathbf{Z}'\mathbf{Z}$
+  invertible. For an estimated genetic covariance matrix, the principled version is *bending*
+  [@hayes1981modification]: shrink the eigenvalues toward their mean, leaving the eigenvectors
+  alone, until the matrix is positive definite and usably conditioned. Chapter 21 returns to it.
+
+```{r}
+#| label: ch01-condition-fixes
+D_half <- diag(1 / sqrt(diag(XtX_age)))          # 1/sqrt of the diagonal
+kappa(D_half %*% XtX_age %*% D_half, exact = TRUE)   # scaling alone: ~18,000
+
+kappa(G + diag(1, 2), exact = TRUE)                  # 1 on the diagonal of G: 1999 -> 183
+```
 
 ## Inversion, solving, and partitioned matrices
 
@@ -1754,6 +1965,19 @@ for rather than that the program is broken.
   $\begin{bmatrix} 100 & 100 \\ 100 & 100 \end{bmatrix}$ has eigenvalues 200 and 0: all the
   variation is on the "together" axis and none on the contrast axis, because $r_g = 1$ and the two
   traits are genetically the same trait. REML cannot estimate such a matrix (Chapter 21).
+- **The condition number of §1.8 is the largest eigenvalue over the smallest.** For
+  $\mathbf{M}$ that is $160 / 40 = 4$. For the near-singular $\mathbf{G}$ of §1.8, with 99.9 in
+  place of 60, the same arithmetic gives $100 + 99.9 = 199.9$ and $100 - 99.9 = 0.1$, so
+  $\kappa = 199.9 / 0.1 = 1999$ — the number `kappa()` reported. The eigenvalue picture says why:
+  almost all the variation lies along the "together" axis and almost none along the contrast, so
+  the ellipse is a needle, and a needle's short axis is where rounding error lives.
+
+  ```{r}
+  #| label: ch01-kappa-eigen
+  eigen(G)$values                            # 199.9 and 0.1
+  eigen(G)$values[1] / eigen(G)$values[2]    # 1999, the same as kappa(G, exact = TRUE)
+  ```
+
 - **Eigenvectors are the principal components of $\mathbf{G}$.** When a genetic covariance matrix
   for twenty traits has most of its variance in three eigenvalues, you can model three dimensions
   instead of twenty. That is what reduced-rank and factor-analytic random regression models do
@@ -2166,7 +2390,7 @@ Nobody reads a matrix algebra chapter straight through and remembers it. Come ba
 | 1.5 Multiplication | the row-by-column walk; $(\mathbf{AB})' = \mathbf{B}'\mathbf{A}'$ | Ch 2, Ch 6 — the MME itself |
 | 1.6 Special matrices | $\mathbf{I}$, diagonal, symmetric, triangular, block | all |
 | 1.7 One model, many animals | $\mathbf{y} = \mathbf{Xb} + \mathbf{e}$; $\mathbf{X}'\mathbf{X}$ as counts, $\mathbf{X}'\mathbf{y}$ as sums | Ch 2, and every chapter after |
-| 1.8 Rank and determinant | why breeding models are singular | Ch 2, Ch 5, Ch 21 |
+| 1.8 Rank and determinant | why breeding models are singular; the condition number | Ch 2, Ch 5, Ch 21, Ch 24 |
 | 1.9 Inversion and partitioning | $\mathbf{A}^{-1}$; Schur complement; do not invert to solve | Ch 4, Ch 6, Ch 7, Ch 24 |
 | 1.10 Generalized inverses | non-unique solutions; estimable functions | Ch 2, Ch 9 |
 | 1.11 Kronecker and Hadamard | $\mathbf{G}_0 \otimes \mathbf{A}$; $\mathbf{A} \# \mathbf{A}$ | Ch 11, Ch 16, Ch 17 |
