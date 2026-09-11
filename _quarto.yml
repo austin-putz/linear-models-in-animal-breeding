@@ -95,7 +95,8 @@ book:
     right:
       - icon: github
         href: https://github.com/austin-putz/linear-models-in-animal-breeding
-      - text: "License: CC BY-NC-SA 4.0"
+      - text: "License: CC BY-NC-SA 4.0 (text) · MIT (code)"
+        href: https://github.com/austin-putz/linear-models-in-animal-breeding/blob/main/LICENSE
 
 bibliography: references.bib
 # csl: genetics.csl   # TODO: add genetics.csl to repo, then re-enable

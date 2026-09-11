@@ -162,18 +162,18 @@ BibTeX:
 
 ## License
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+Two licenses, split by whether a file is something you run or something you read — see
+[`LICENSE`](LICENSE) for the full breakdown.
 
-This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+- **Code** — [MIT](LICENSE-CODE). The R chunks in every chapter, the dataset-generating scripts in
+  `data-raw/`, the manim source, build scripts, Quarto extensions and stylesheets. Reuse it
+  freely, including commercially.
+- **Content** — [CC BY-NC-SA 4.0](LICENSE-CONTENT). The book: prose, the outline, the datasets,
+  and the rendered figures and clips. Share it, teach from it, translate it, build on it — but
+  not sell it.
 
-You are free to:
-- **Share** — copy and redistribute the material in any medium or format
-- **Adapt** — remix, transform, and build upon the material
-
-Under the following terms:
-- **Attribution** — You must give appropriate credit
-- **NonCommercial** — You may not use the material for commercial purposes
-- **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the same license
+The rule behind the split: the source that generates a figure or a dataset is code; the figure
+or dataset it produces is part of the book.
 
 ## Acknowledgments
 

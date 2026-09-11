@@ -1,0 +1,50 @@
+# Licensing
+
+This repository is licensed in two parts. Which one applies depends on whether a file is
+something you **run** or something you **read**.
+
+| | License | Covers |
+|---|---|---|
+| **Code** | [MIT](LICENSE-CODE) | Everything executable: the R chunks inside the chapters, the dataset-generating scripts, the manim source, build scripts, Quarto extensions and stylesheets |
+| **Content** | [CC BY-NC-SA 4.0](LICENSE-CONTENT) | The book: prose, the chapter outline, the datasets, and the rendered figures and clips |
+
+## Why the split
+
+The code exists to be reused. This book's reason for existing is that a student reads the R,
+retypes it, and runs it — so the R in every chapter, the scripts in `data-raw/`, the manim theme
+module and the Quarto extension are yours to take, including commercially, including without
+asking. That is what MIT is for.
+
+The book is a different thing. **CC BY-NC-SA** lets anyone read it, share it, teach from it,
+translate it and build on it, but not sell it. Concretely: printing this book and selling the
+copies is not permitted.
+
+## Which files, today
+
+**MIT — [`LICENSE-CODE`](LICENSE-CODE)**
+
+- The R code chunks inside `chapters/*.qmd`, `appendices/*.qmd` and `index.qmd`
+- `data-raw/` — the scripts that generate the datasets
+- `manim/` — the animation source and the `ambook` theme module, plus `manim/build.py`
+- `_extensions/`, `styles/`, `_quarto.yml`, `setup.R`, `templates/`, `.github/workflows/`
+
+**CC BY-NC-SA 4.0 — [`LICENSE-CONTENT`](LICENSE-CONTENT)**
+
+- The prose of `chapters/`, `appendices/`, `index.qmd` and `references.qmd`
+- `CHAPTERS.md`, `CLAUDE.md`, `README.md`, `plans/`
+- `data/` — the datasets themselves
+- `assets/` — the rendered figures, clips and poster stills
+- The rendered book itself, in HTML and PDF
+
+The rule behind that list: **the source that generates a figure or a dataset is code; the
+figure or dataset it produces is part of the book.** A chapter file mixes the two — its R
+chunks are code, and the prose around them is content.
+
+## Attribution
+
+Attribution for the content, under BY, is:
+
+> Austin Putz, *Linear Models in Animal Breeding: A Worked Approach*,
+> https://github.com/austin-putz/linear-models-in-animal-breeding — licensed CC BY-NC-SA 4.0
+
+Copyright (c) 2026 Austin Putz.
