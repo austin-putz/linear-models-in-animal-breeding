@@ -24,6 +24,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      # SVG figures under assets/figs/ are converted to PDF graphics by
+      # rsvg-convert, which the runner does not ship.
+      - name: Install rsvg-convert for SVG figures in the PDF
+        run: sudo apt-get update -q && sudo apt-get install -y -q librsvg2-bin
+
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
