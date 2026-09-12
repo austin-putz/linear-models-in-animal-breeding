@@ -619,17 +619,30 @@ Some matrices turn up so often that they have names. They are worth meeting *aft
 operations, because most of them are defined by how they behave under those operations rather
 than by what they look like.
 
+![Nine special matrices used throughout animal breeding: identity, null, ones, diagonal,
+symmetric, triangular, incidence, block, and positive definite. Each card pairs an exact numerical
+example with its defining pattern and its main use in the models developed later in the book.](../assets/figs/ch01-special-matrices.svg){#fig-special-matrices
+fig-alt="A nine-card field guide to special matrices. Identity has ones on its diagonal and zeros
+elsewhere; null contains only zeros; J contains only ones; diagonal has zero off-diagonal entries;
+symmetric mirrors across its main diagonal; lower triangular has zeros above the diagonal;
+incidence uses zero-one membership entries; block matrices assemble smaller matrices as tiles; and
+a symmetric positive-definite matrix has a positive quadratic form and positive eigenvalues. The
+cards link these patterns respectively to independent residuals, unrelated-family blocks, the mean model,
+weights and residual variances, covariance and relationship matrices, Cholesky and pedigree
+factors, indicator columns in X and Z, mixed model equations, and nonsingular covariance
+structures. A footer notes that the categories overlap."}
+
 | Matrix | What it is | Where it shows up |
 |---|---|---|
 | Identity $\mathbf{I}$ | 1s on the diagonal, 0s elsewhere. Multiplying by it changes nothing: $\mathbf{AI} = \mathbf{IA} = \mathbf{A}$ | the residual structure $\mathbf{R} = \mathbf{I}\sigma^2_e$; the "no relationships" model of Ch 3 |
 | Null $\mathbf{0}$ | all zeros | the off-diagonal blocks joining unrelated families |
-| $\mathbf{J}$ | all ones | the mean model; $\mathbf{J}/n$ as the averaging operator |
-| Diagonal | non-zero only on the diagonal | weights, unequal residual variances, $\mathbf{D}$ in $\mathbf{A} = \mathbf{TDT}'$ (Ch 4) |
+| $\mathbf{J}$ | all ones | the mean model; $\mathbf{J}_n/n$ as the averaging operator for $n$ entries |
+| Diagonal | all off-diagonal entries are zero | weights, unequal residual variances, $\mathbf{D}$ in $\mathbf{A} = \mathbf{TDT}'$ (Ch 4) |
 | Symmetric | $a_{ij} = a_{ji}$ | every covariance matrix; $\mathbf{X}'\mathbf{X}$; the whole MME left-hand side |
 | Triangular | zeros above (or below) the diagonal | $\mathbf{L}$ from Cholesky (§1.12); $\mathbf{T}$ from the pedigree (Ch 4) |
-| Incidence | entries 0 or 1 only | $\mathbf{X}$ and $\mathbf{Z}$ — almost entirely zeros, which is why Ch 24 exists |
+| Incidence | 0/1 indicators link records to effect levels | indicator columns in $\mathbf{X}$ and $\mathbf{Z}$ — almost entirely zeros, which is why Ch 24 exists |
 | Block / partitioned | built from smaller matrices as tiles | the MME itself (Ch 6) |
-| Positive definite | a validity condition — see §1.13 | what a covariance matrix must be to be a covariance matrix |
+| Positive definite | for symmetric $\mathbf{M}$, $\mathbf{x}'\mathbf{Mx} > 0$ for every nonzero $\mathbf{x}$ — see §1.13 | nonsingular covariance structures; Cholesky factorisation and inversion |
 
 ```{r}
 #| label: ch01-special

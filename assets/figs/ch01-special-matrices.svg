@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1270" viewBox="0 0 1800 1270" role="img" aria-labelledby="title desc">
+  <title id="title">A field guide to nine special matrices</title>
+  <desc id="desc">Nine cards show exact numerical examples, defining patterns, algebraic identities, and animal-breeding uses for the identity, null, ones, diagonal, symmetric, triangular, incidence, block, and positive-definite matrices.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101826"/>
+      <stop offset="1" stop-color="#0b1320"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a2a40"/>
+      <stop offset="1" stop-color="#142236"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#02060d" flood-opacity=".28"/>
+    </filter>
+    <style>
+      .title { font: 700 58px Inter, ui-sans-serif, system-ui, sans-serif; fill: #f5efe4; letter-spacing: -1.4px; }
+      .subtitle { font: 400 24px Inter, ui-sans-serif, system-ui, sans-serif; fill: #a8c0d8; }
+      .card-title { font: 700 29px Inter, ui-sans-serif, system-ui, sans-serif; fill: #f5efe4; }
+      .symbol { font: 600 21px Inter, ui-sans-serif, system-ui, sans-serif; fill: #b98cf0; }
+      .matrix { font: 500 28px "SFMono-Regular", Consolas, "Liberation Mono", monospace; fill: #f5efe4; text-anchor: middle; }
+      .matrix-small { font: 500 25px "SFMono-Regular", Consolas, "Liberation Mono", monospace; fill: #f5efe4; text-anchor: middle; }
+      .label { font: 700 15px Inter, ui-sans-serif, system-ui, sans-serif; fill: #7f8da4; letter-spacing: 1.8px; }
+      .body { font: 500 18px Inter, ui-sans-serif, system-ui, sans-serif; fill: #dfe5ee; }
+      .use { font: 500 17px Inter, ui-sans-serif, system-ui, sans-serif; fill: #a8c0d8; }
+      .equation { font: 600 21px Inter, ui-sans-serif, system-ui, sans-serif; fill: #f5efe4; }
+      .num { font: 700 18px Inter, ui-sans-serif, system-ui, sans-serif; fill: #101826; text-anchor: middle; }
+      .footer-main { font: 700 22px Inter, ui-sans-serif, system-ui, sans-serif; fill: #f5efe4; }
+      .footer-sub { font: 500 19px Inter, ui-sans-serif, system-ui, sans-serif; fill: #a8c0d8; }
+      .bracket { fill: none; stroke: #a8c0d8; stroke-width: 3; stroke-linecap: square; }
+      .divider { stroke: #2b3d56; stroke-width: 1.5; }
+      .accent { fill: #b98cf0; }
+      .cardbox { fill: url(#card); stroke: #29405d; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <rect width="1800" height="1270" fill="url(#bg)"/>
+  <circle cx="1690" cy="72" r="115" fill="#b98cf0" opacity=".055"/>
+  <circle cx="1760" cy="132" r="72" fill="#5aa9e6" opacity=".045"/>
+
+  <text id="heading" class="title" x="70" y="82">A field guide to special matrices</text>
+  <text class="subtitle" x="72" y="121">Recognize the pattern → remember the operation → connect it to the model</text>
+  <g transform="translate(1506 45)">
+    <rect width="224" height="78" rx="18" fill="#18283d" stroke="#36506d"/>
+    <text class="label" x="20" y="29">CHAPTER 1</text>
+    <text class="body" x="20" y="57">visual reference</text>
+  </g>
+
+  <!-- Row 1 -->
+  <g transform="translate(70 165)" filter="url(#shadow)">
+    <rect class="cardbox" width="530" height="295" rx="22"/>
+    <rect class="accent" x="0" y="0" width="7" height="295" rx="3.5"/>
+    <circle cx="38" cy="37" r="18" fill="#b98cf0"/><text class="num" x="38" y="43">1</text>
+    <text class="card-title" x="68" y="46">Identity</text><text class="symbol" x="477" y="44">I₃</text>
+    <line class="divider" x1="28" y1="67" x2="502" y2="67"/>
+    <g transform="translate(42 92)">
+      <path class="bracket" d="M18 0 H7 V98 H18 M137 0 H148 V98 H137"/>
+      <text class="matrix" x="46" y="27">1</text><text class="matrix" x="77" y="27">0</text><text class="matrix" x="108" y="27">0</text>
+      <text class="matrix" x="46" y="61">0</text><text class="matrix" x="77" y="61">1</text><text class="matrix" x="108" y="61">0</text>
+      <text class="matrix" x="46" y="95">0</text><text class="matrix" x="77" y="95">0</text><text class="matrix" x="108" y="95">1</text>
+    </g>
+    <text class="label" x="232" y="101">SPOT IT</text>
+    <text class="body" x="232" y="127">1s on the diagonal;</text><text class="body" x="232" y="151">0s everywhere else.</text>
+    <text class="equation" x="232" y="184">AI = IA = A</text>
+    <line class="divider" x1="28" y1="213" x2="502" y2="213"/>
+    <text class="label" x="28" y="239">BREEDING USE</text>
+    <text class="use" x="28" y="268">Independent residuals:  R = Iσ²<tspan baseline-shift="sub" font-size="12">e</tspan></text>
+  </g>
+
+  <g transform="translate(635 165)" filter="url(#shadow)">
+    <rect class="cardbox" width="530" height="295" rx="22"/>
+    <rect class="accent" x="0" y="0" width="7" height="295" rx="3.5"/>
+    <circle cx="38" cy="37" r="18" fill="#b98cf0"/><text class="num" x="38" y="43">2</text>
+    <text class="card-title" x="68" y="46">Null</text><text class="symbol" x="473" y="44">0</text>
+    <line class="divider" x1="28" y1="67" x2="502" y2="67"/>
+    <g transform="translate(40 109)">
+      <path class="bracket" d="M18 0 H7 V67 H18 M139 0 H150 V67 H139"/>
+      <text class="matrix" x="46" y="27">0</text><text class="matrix" x="79" y="27">0</text><text class="matrix" x="112" y="27">0</text>
+      <text class="matrix" x="46" y="62">0</text><text class="matrix" x="79" y="62">0</text><text class="matrix" x="112" y="62">0</text>
+    </g>
+    <text class="label" x="232" y="101">SPOT IT</text>
+    <text class="body" x="232" y="127">Every entry is zero.</text>
+    <text class="equation" x="232" y="168">A + 0 = A</text>
+    <line class="divider" x1="28" y1="213" x2="502" y2="213"/>
+    <text class="label" x="28" y="239">BREEDING USE</text>
+    <text class="use" x="28" y="268">Blocks connecting unrelated families</text>
+  </g>
+
+  <g transform="translate(1200 165)" filter="url(#shadow)">
+    <rect class="cardbox" width="530" height="295" rx="22"/>
+    <rect class="accent" x="0" y="0" width="7" height="295" rx="3.5"/>
+    <circle cx="38" cy="37" r="18" fill="#b98cf0"/><text class="num" x="38" y="43">3</text>
+    <text class="card-title" x="68" y="46">Ones matrix</text><text class="symbol" x="475" y="44">J₃</text>
+    <line class="divider" x1="28" y1="67" x2="502" y2="67"/>
+    <g transform="translate(42 92)">
+      <path class="bracket" d="M18 0 H7 V98 H18 M137 0 H148 V98 H137"/>
+      <text class="matrix" x="46" y="27">1</text><text class="matrix" x="77" y="27">1</text><text class="matrix" x="108" y="27">1</text>
+      <text class="matrix" x="46" y="61">1</text><text class="matrix" x="77" y="61">1</text><text class="matrix" x="108" y="61">1</text>
+      <text class="matrix" x="46" y="95">1</text><text class="matrix" x="77" y="95">1</text><text class="matrix" x="108" y="95">1</text>
+    </g>
+    <text class="label" x="232" y="101">SPOT IT</text>
+    <text class="body" x="232" y="127">Every entry is one.</text>
+    <text class="equation" x="232" y="168">(Jₙ/n)x = mean(x) 1</text>
+    <line class="divider" x1="28" y1="213" x2="502" y2="213"/>
+    <text class="label" x="28" y="239">BREEDING USE</text>
+    <text class="use" x="28" y="268">Averaging in the intercept-only model</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g transform="translate(70 490)" filter="url(#shadow)">
+    <rect class="cardbox" width="530" height="295" rx="22"/>
+    <rect class="accent" x="0" y="0" width="7" height="295" rx="3.5"/>
+    <circle cx="38" cy="37" r="18" fill="#b98cf0"/><text class="num" x="38" y="43">4</text>
+    <text class="card-title" x="68" y="46">Diagonal</text><text class="symbol" x="472" y="44">D</text>
+    <line class="divider" x1="28" y1="67" x2="502" y2="67"/>
+    <g transform="translate(42 92)">
+      <path class="bracket" d="M18 0 H7 V98 H18 M137 0 H148 V98 H137"/>
+      <text class="matrix" x="46" y="27">2</text><text class="matrix" x="77" y="27">0</text><text class="matrix" x="108" y="27">0</text>
+      <text class="matrix" x="46" y="61">0</text><text class="matrix" x="77" y="61">5</text><text class="matrix" x="108" y="61">0</text>
+      <text class="matrix" x="46" y="95">0</text><text class="matrix" x="77" y="95">0</text><text class="matrix" x="108" y="95">9</text>
+    </g>
+    <text class="label" x="232" y="101">SPOT IT</text>
+    <text class="body" x="232" y="127">All off-diagonal</text><text class="body" x="232" y="151">entries are zero.</text>
+    <text class="equation" x="232" y="184">D = diag(2, 5, 9)</text>
+    <line class="divider" x1="28" y1="213" x2="502" y2="213"/>
+    <text class="label" x="28" y="239">BREEDING USE</text>
+    <text class="use" x="28" y="268">Weights and unequal residual variances</text>
+  </g>
+
+  <g transform="translate(635 490)" filter="url(#shadow)">
+    <rect class="cardbox" width="530" height="295" rx="22"/>
+    <rect class="accent" x="0" y="0" width="7" height="295" rx="3.5"/>
+    <circle cx="38" cy="37" r="18" fill="#b98cf0"/><text class="num" x="38" y="43">5</text>
+    <text class="card-title" x="68" y="46">Symmetric</text><text class="symbol" x="461" y="44">S = Sᵀ</text>
+    <line class="divider" x1="28" y1="67" x2="502" y2="67"/>
+    <g transform="translate(33 92)">
+      <path class="bracket" d="M18 0 H7 V98 H18 M163 0 H174 V98 H163"/>
+      <text class="matrix-small" x="47" y="27">1</text><text class="matrix-small" x="90" y="27">.5</text><text class="matrix-small" x="137" y="27">.25</text>
+      <text class="matrix-small" x="47" y="61">.5</text><text class="matrix-small" x="90" y="61">1</text><text class="matrix-small" x="137" y="61">.4</text>
+      <text class="matrix-small" x="47" y="95">.25</text><text class="matrix-small" x="90" y="95">.4</text><text class="matrix-small" x="137" y="95">1</text>
+      <path d="M31 8 L149 91" stroke="#b98cf0" stroke-width="2" stroke-dasharray="5 6" opacity=".6"/>
+    </g>
+    <text class="label" x="232" y="101">SPOT IT</text>
+    <text class="body" x="232" y="127">Mirror image across</text><text class="body" x="232" y="151">the main diagonal.</text>
+    <text class="equation" x="232" y="184">sᵢⱼ = sⱼᵢ</text>
+    <line class="divider" x1="28" y1="213" x2="502" y2="213"/>
+    <text class="label" x="28" y="239">BREEDING USE</text>
+    <text class="use" x="28" y="268">A, covariance matrices, and XᵀX</text>
+  </g>
+
+  <g transform="translate(1200 490)" filter="url(#shadow)">
+    <rect class="cardbox" width="530" height="295" rx="22"/>
+    <rect class="accent" x="0" y="0" width="7" height="295" rx="3.5"/>
+    <circle cx="38" cy="37" r="18" fill="#b98cf0"/><text class="num" x="38" y="43">6</text>
+    <text class="card-title" x="68" y="46">Triangular</text><text class="symbol" x="477" y="44">L</text>
+    <line class="divider" x1="28" y1="67" x2="502" y2="67"/>
+    <g transform="translate(35 92)">
+      <path class="bracket" d="M18 0 H7 V98 H18 M157 0 H168 V98 H157"/>
+      <text class="matrix-small" x="46" y="27">1</text><text class="matrix-small" x="88" y="27">0</text><text class="matrix-small" x="132" y="27">0</text>
+      <text class="matrix-small" x="46" y="61">.5</text><text class="matrix-small" x="88" y="61">1</text><text class="matrix-small" x="132" y="61">0</text>
+      <text class="matrix-small" x="46" y="95">.2</text><text class="matrix-small" x="88" y="95">.4</text><text class="matrix-small" x="132" y="95">1</text>
+    </g>
+    <text class="label" x="232" y="101">SPOT IT</text>
+    <text class="body" x="232" y="127">Zeros above the diagonal</text><text class="body" x="232" y="151">for a lower triangle.</text>
+    <text class="equation" x="232" y="184">ℓᵢⱼ = 0 when j &gt; i</text>
+    <line class="divider" x1="28" y1="213" x2="502" y2="213"/>
+    <text class="label" x="28" y="239">BREEDING USE</text>
+    <text class="use" x="28" y="268">Cholesky L and pedigree T</text>
+  </g>
+
+  <!-- Row 3 -->
+  <g transform="translate(70 815)" filter="url(#shadow)">
+    <rect class="cardbox" width="530" height="295" rx="22"/>
+    <rect class="accent" x="0" y="0" width="7" height="295" rx="3.5"/>
+    <circle cx="38" cy="37" r="18" fill="#b98cf0"/><text class="num" x="38" y="43">7</text>
+    <text class="card-title" x="68" y="46">Incidence</text><text class="symbol" x="477" y="44">X</text>
+    <line class="divider" x1="28" y1="67" x2="502" y2="67"/>
+    <g transform="translate(42 82)">
+      <path class="bracket" d="M18 0 H7 V116 H18 M137 0 H148 V116 H137"/>
+      <text class="matrix-small" x="46" y="25">1</text><text class="matrix-small" x="77" y="25">0</text><text class="matrix-small" x="108" y="25">0</text>
+      <text class="matrix-small" x="46" y="54">0</text><text class="matrix-small" x="77" y="54">1</text><text class="matrix-small" x="108" y="54">0</text>
+      <text class="matrix-small" x="46" y="83">0</text><text class="matrix-small" x="77" y="83">1</text><text class="matrix-small" x="108" y="83">0</text>
+      <text class="matrix-small" x="46" y="112">0</text><text class="matrix-small" x="77" y="112">0</text><text class="matrix-small" x="108" y="112">1</text>
+    </g>
+    <text class="label" x="232" y="101">SPOT IT</text>
+    <text class="body" x="232" y="127">Indicator columns link</text><text class="body" x="232" y="151">records to effect levels.</text>
+    <text class="equation" x="232" y="184">Each xᵢⱼ is 0 or 1</text>
+    <line class="divider" x1="28" y1="213" x2="502" y2="213"/>
+    <text class="label" x="28" y="239">BREEDING USE</text>
+    <text class="use" x="28" y="268">Indicator columns in X and Z</text>
+  </g>
+
+  <g transform="translate(635 815)" filter="url(#shadow)">
+    <rect class="cardbox" width="530" height="295" rx="22"/>
+    <rect class="accent" x="0" y="0" width="7" height="295" rx="3.5"/>
+    <circle cx="38" cy="37" r="18" fill="#b98cf0"/><text class="num" x="38" y="43">8</text>
+    <text class="card-title" x="68" y="46">Block / partitioned</text>
+    <line class="divider" x1="28" y1="67" x2="502" y2="67"/>
+    <g transform="translate(40 89)">
+      <path class="bracket" d="M18 0 H7 V98 H18 M447 0 H458 V98 H447"/>
+      <rect x="28" y="8" width="145" height="35" rx="7" fill="#213b56"/><rect x="178" y="8" width="145" height="35" rx="7" fill="#22374d"/>
+      <rect x="28" y="49" width="145" height="35" rx="7" fill="#22374d"/><rect x="178" y="49" width="257" height="35" rx="7" fill="#213b56"/>
+      <text class="equation" x="59" y="34">XᵀX</text><text class="equation" x="208" y="34">XᵀZ</text>
+      <text class="equation" x="58" y="75">ZᵀX</text><text class="equation" x="208" y="75">ZᵀZ + A⁻¹α</text>
+    </g>
+    <text class="label" x="28" y="205">SPOT IT</text>
+    <text class="body" x="28" y="231">Smaller matrices act as aligned tiles.</text>
+    <line class="divider" x1="28" y1="246" x2="502" y2="246"/>
+    <text class="label" x="28" y="272">BREEDING USE</text>
+    <text class="use" x="173" y="272">Mixed model equations</text>
+  </g>
+
+  <g transform="translate(1200 815)" filter="url(#shadow)">
+    <rect class="cardbox" width="530" height="295" rx="22"/>
+    <rect class="accent" x="0" y="0" width="7" height="295" rx="3.5"/>
+    <circle cx="38" cy="37" r="18" fill="#b98cf0"/><text class="num" x="38" y="43">9</text>
+    <text class="card-title" x="68" y="46">Positive definite</text><text class="symbol" x="477" y="44">M</text>
+    <line class="divider" x1="28" y1="67" x2="502" y2="67"/>
+    <g transform="translate(46 111)">
+      <path class="bracket" d="M18 0 H7 V67 H18 M112 0 H123 V67 H112"/>
+      <text class="matrix" x="47" y="27">4</text><text class="matrix" x="82" y="27">2</text>
+      <text class="matrix" x="47" y="62">2</text><text class="matrix" x="82" y="62">3</text>
+    </g>
+    <text class="label" x="232" y="101">TEST IT</text>
+    <text class="body" x="232" y="127">For a symmetric M:</text>
+    <text class="equation" x="232" y="157">xᵀMx &gt; 0 for x ≠ 0</text>
+    <text class="body" x="232" y="184">All eigenvalues are positive.</text>
+    <line class="divider" x1="28" y1="213" x2="502" y2="213"/>
+    <text class="label" x="28" y="239">BREEDING USE</text>
+    <text class="use" x="28" y="268">Nonsingular covariance structures</text>
+  </g>
+
+  <g transform="translate(70 1145)">
+    <rect width="1660" height="82" rx="20" fill="#18283d" stroke="#36506d" stroke-width="1.5"/>
+    <circle cx="42" cy="41" r="18" fill="#f5efe4" opacity=".95"/>
+    <path d="M34 41 l6 6 11 -14" fill="none" stroke="#101826" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text class="footer-main" x="76" y="34">The categories overlap.</text>
+    <text class="footer-sub" x="76" y="61">For example, I is diagonal, symmetric, triangular, and positive definite—one matrix can have several useful properties.</text>
+  </g>
+</svg>
