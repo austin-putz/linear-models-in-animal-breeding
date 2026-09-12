@@ -43,6 +43,13 @@ Thumbs.db
 *.tex
 *.pdf
 !manuscript.pdf
+# The PDF preamble is source, not LaTeX output; it must survive the rule above.
+!styles/pdf-preamble.tex
+
+# Written by tools/version.R before every render, from the git tag. Never
+# edited by hand, never committed. (styles/version.tex is caught by *.tex.)
+/_variables.yml
+/_version-bibtex.md
 
 # Python (if used)
 __pycache__/

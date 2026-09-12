@@ -1,0 +1,104 @@
+# Reporting Errors and Contributing {.unnumbered}
+
+A textbook with worked numbers on every page has many places to be wrong, and the fastest way to
+find them is readers. Every report is read. The fix goes onto the website within days and into the
+next released version, and you are credited in the changelog unless you ask not to be.
+
+There is no errata list. When something is wrong it is corrected in the book itself, a new version
+is released, and the release's changelog says what changed. If you hold an older copy, the
+changelog is where to check whether the thing you are looking at was fixed after your version.
+
+## Which route for what
+
+| You have found | Use | Where |
+|---|---|---|
+| A **wrong number, equation, R output, or claim** | An issue, using the *Error in the book* form | [Issues](https://github.com/austin-putz/linear-models-in-animal-breeding/issues/new?template=error.yml) |
+| A **typo or awkward sentence** you are willing to fix | A pull request from the *Edit this page* link | see below |
+| A typo you would rather just report | The same *Error in the book* form | [Issues](https://github.com/austin-putz/linear-models-in-animal-breeding/issues/new?template=error.yml) |
+| A section you **did not follow**, or are not sure is right | A question in Discussions | [Q&A](https://github.com/austin-putz/linear-models-in-animal-breeding/discussions/categories/q-a) |
+| A **suggestion** — a better example, a missing topic | An idea in Discussions | [Ideas](https://github.com/austin-putz/linear-models-in-animal-breeding/discussions/categories/ideas) |
+| Something that should **not be public** | Email the author | the address on the GitHub profile |
+
+Issues and Discussions are kept separate on purpose. The issue tracker holds only things with a
+fix, so it reads as a to-do list and you can search it to see whether your error is already
+reported. Questions go to Discussions because a question is not a defect — but a run of questions
+on the same section is a sign the explanation failed, and that does become an issue.
+
+## Before you report
+
+**Find your version.** It is printed in the footer of every page, on the website and in the PDF:
+`Version 0.1.0 (2026-09-12)`, say. A version ending in `-dev+` and a commit hash is a development
+build of the website between releases; report against it just the same, the hash says exactly
+which text you read.
+
+**Check whether it is already fixed.** The website always shows the newest text. If your copy is
+a PDF, look at the [changelog](https://github.com/austin-putz/linear-models-in-animal-breeding/blob/main/CHANGELOG.md)
+for releases after yours.
+
+**Search the open issues.** If someone has already reported it, add a comment there rather than
+opening a second one; a second report on the same issue is still useful, because it says how
+visible the error is.
+
+## Reporting an error
+
+On the website, every page has a **Report an error or suggest a change** link in the right-hand
+margin, which brings you here. From here, the error form is at
+<https://github.com/austin-putz/linear-models-in-animal-breeding/issues/new?template=error.yml>.
+You need a free GitHub account.
+
+The form asks for:
+
+- **Version** and **format**. Without these the report cannot be matched to the text you read.
+- **Chapter and section**, with the equation, figure, or code chunk if there is one.
+- **What is wrong** — quote it as it appears — and **what it should be**.
+- **How you know.** Optional, and the most useful field. For a wrong number, the R code that
+  produces the number you believe is correct is worth more than any amount of prose, because it can
+  be run.
+
+## Fixing it yourself
+
+For a typo or a wording fix, the fastest route is to make the change and propose it. Every page of
+the website has an **Edit this page** link in the right-hand margin. Clicking it:
+
+1. Opens the chapter's source file — a `.qmd`, which is Markdown with R code chunks — on GitHub.
+2. Offers to **fork** the repository into your own account if you do not have write access. Accept.
+3. Lets you edit in the browser. Make the change, write one line saying what it is, and choose
+   **Propose changes**, then **Create pull request**.
+
+The pull request is rendered automatically, so you will see within a few minutes whether the book
+still builds. The author reviews it, and merges it or asks for a change.
+
+Some things to know before you edit:
+
+- **Edit the `.qmd` only.** `_freeze/` and `_book/` are generated output, and are not in the
+  repository. Do not add anything to `references.bib` unless you have verified the DOI — every entry
+  in it has been.
+- **Keep to one fix per pull request.** A three-line change is reviewed in a minute; a change that
+  touches four chapters waits.
+- **Your contribution is offered under the book's licences** — CC BY-NC-SA 4.0 for text and
+  figures, MIT for code. The pull request template has a box to tick to say so.
+- **Larger changes** — a rewritten section, a new example — should start as a discussion in
+  *Ideas*, so the shape is agreed before the work is done.
+
+## Asking a question or suggesting something
+
+**Discussions › Q&A** is for "I did not follow §6.3" or "is this right?". Other readers can answer
+as well as the author, and a question that has been answered stays there for the next person.
+
+**Discussions › Ideas** is for a different dataset, a topic the book should cover, a better way to
+explain something. Scope is the author's call — genomic selection and large-scale computation, for
+instance, are deliberately deferred to companion volumes — but the discussion is where the case is
+made.
+
+## What happens next
+
+A report is labelled with its chapter and with `error` or `typo`. The fix is made on the `main`
+branch, and the website updates from it within minutes — so the development build on the site is
+always ahead of the last release. When a *result* has been corrected (a number, an equation, an R
+output) a release follows promptly; when only typos have accumulated, they are batched into the
+next one.
+
+Each release has an entry in the [changelog](https://github.com/austin-putz/linear-models-in-animal-breeding/blob/main/CHANGELOG.md)
+listing what was corrected, where, and who reported it. The issue is closed with a label naming the
+version that carries the fix, so a reader following an old citation can search by version and find
+it.

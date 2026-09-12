@@ -1,0 +1,80 @@
+name: Error in the book
+description: A wrong number, equation, R output, claim, or typo.
+title: "[Ch NN] Short description of the error"
+labels: ["error"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Every report is read, the fix goes into the next release, and you are credited
+        in the changelog unless you ask not to be. The "Reporting Errors" page of the book explains
+        the routes: https://austin-putz.github.io/linear-models-in-animal-breeding/reporting.html
+
+        Not an error? A question about something you did not understand belongs in
+        [Discussions › Q&A](https://github.com/austin-putz/linear-models-in-animal-breeding/discussions/categories/q-a);
+        a suggestion belongs in [Discussions › Ideas](https://github.com/austin-putz/linear-models-in-animal-breeding/discussions/categories/ideas).
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: >-
+        Printed in the footer of every page, in both the website and the PDF — for example
+        `0.1.0` or `0.2.0-dev+abc1234`. The version says exactly which text you read.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: format
+    attributes:
+      label: Format
+      options:
+        - Website (HTML)
+        - PDF
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Chapter and section
+      description: The chapter and section number, and the equation, figure, or code chunk if there is one.
+      placeholder: "Chapter 6, §6.3, equation (6.2)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong
+      description: Quote the text, number, or code as it appears.
+    validations:
+      required: true
+
+  - type: textarea
+    id: right
+    attributes:
+      label: What it should be
+      description: Your correction. If you are not sure, say what you expected and why.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: How you know
+      description: >-
+        Optional. A hand working, the output of an R chunk, or a reference. For a wrong number,
+        the R code that produces the number you think is right is the most useful thing you can give.
+      render: r
+    validations:
+      required: false
+
+  - type: input
+    id: credit
+    attributes:
+      label: How to credit you
+      description: Optional. Your name as you would like it in the changelog; leave blank for your GitHub handle, or write "no credit".
+    validations:
+      required: false

@@ -1,0 +1,12 @@
+# Readers pick a form; a blank issue is the one thing that cannot be triaged.
+blank_issues_enabled: false
+contact_links:
+  - name: I have a question about something in the book
+    url: https://github.com/austin-putz/linear-models-in-animal-breeding/discussions/categories/q-a
+    about: Not sure a section is right, or did not follow it? Ask in Discussions › Q&A. Other readers can answer too.
+  - name: I have a suggestion
+    url: https://github.com/austin-putz/linear-models-in-animal-breeding/discussions/categories/ideas
+    about: A different example, a missing topic, a better way to explain something — Discussions › Ideas.
+  - name: How to report, in the book
+    url: https://austin-putz.github.io/linear-models-in-animal-breeding/reporting.html
+    about: The page in the book that explains which route to use for what.

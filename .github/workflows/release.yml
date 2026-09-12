@@ -1,0 +1,80 @@
+name: Release
+
+# Pushing a tag `vX.Y.Z` renders the PDF at that tag and publishes a GitHub
+# release carrying it, with the matching CHANGELOG.md section as the notes.
+# The website is not touched: quarto-publish.yml deploys that from main.
+# See plans/versioning_and_feedback.md.
+
+on:
+  push:
+    tags: ['v[0-9]*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Full history: tools/version.R reads the version from `git describe`,
+      # which needs the tags to be present.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 'release'
+          tinytex: true
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.4.1'
+          use-public-rspm: true
+
+      # Keep in step with quarto-publish.yml.
+      - name: Install R dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::knitr
+            any::rmarkdown
+            any::Matrix
+            any::MASS
+
+      - name: Render the PDF
+        run: quarto render --to pdf
+
+      # The section for this tag, from its "## [X.Y.Z]" heading up to the next
+      # "## [" heading. An empty file here means the changelog was not written,
+      # and the release should not go out without notes.
+      - name: Extract release notes from CHANGELOG.md
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v v="$VERSION" '
+            /^## \[/ { printing = ($0 ~ "^## \\[" v "\\]") }
+            printing { print }
+          ' CHANGELOG.md > release-notes.md
+          if [ ! -s release-notes.md ]; then
+            echo "No CHANGELOG.md section for version $VERSION" >&2
+            exit 1
+          fi
+          cat release-notes.md
+
+      - name: Name the PDF after the version
+        run: |
+          mv _book/Linear-Models-in-Animal-Breeding.pdf \
+             "linear-models-in-animal-breeding-${GITHUB_REF_NAME}.pdf"
+
+      - name: Publish the GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ github.ref_name }}
+          body_path: release-notes.md
+          files: linear-models-in-animal-breeding-${{ github.ref_name }}.pdf
+          # Anything before v1.0.0 is a pre-release: the book is not citable yet.
+          prerelease: ${{ startsWith(github.ref_name, 'v0.') }}

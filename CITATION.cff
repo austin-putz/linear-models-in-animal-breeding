@@ -1,0 +1,30 @@
+# Citation metadata for the book. GitHub renders this as "Cite this repository",
+# and Zenodo will read it when the first DOI is minted (plans/versioning_and_feedback.md).
+# Author metadata lives here and nowhere else.
+cff-version: 1.2.0
+message: >-
+  If you use this book, please cite it using the metadata below. Give the
+  version you read; it is printed in the footer of every page.
+type: software
+title: "Linear Models in Animal Breeding: A Worked Approach"
+authors:
+  - family-names: Putz
+    given-names: Austin
+    # orcid: https://orcid.org/0000-0000-0000-0000
+url: https://austin-putz.github.io/linear-models-in-animal-breeding/
+repository-code: https://github.com/austin-putz/linear-models-in-animal-breeding
+license: CC-BY-NC-SA-4.0
+keywords:
+  - animal breeding
+  - mixed models
+  - BLUP
+  - quantitative genetics
+  - textbook
+preferred-citation:
+  type: book
+  title: "Linear Models in Animal Breeding: A Worked Approach"
+  authors:
+    - family-names: Putz
+      given-names: Austin
+  url: https://austin-putz.github.io/linear-models-in-animal-breeding/
+  year: 2026

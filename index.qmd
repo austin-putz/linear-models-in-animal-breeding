@@ -285,9 +285,20 @@ there at all.
 
 ## Citation
 
-If you use this book in your research or teaching, please cite as:
+The book is versioned. Each release is tagged in the repository and can be retrieved exactly as it
+was, so a citation that names its version can always be checked. The version you are reading is
+**{{< var version >}}**, released {{< var released >}} — it is also printed in the footer of every
+page, in both the website and the PDF. Cite it as:
 
-> Putz, Austin (2025). *Linear Models in Animal Breeding: A Worked Approach*. https://austin-putz.github.io/linear-models-in-animal-breeding/
+> Putz, Austin ({{< var year >}}). *Linear Models in Animal Breeding: A Worked Approach*, version
+> {{< var version >}}. https://austin-putz.github.io/linear-models-in-animal-breeding/
+
+{{< include _version-bibtex.md >}}
+
+A version ending in `-dev+` and a commit hash is a development build of the website between
+releases. It is still an exact reference — the hash identifies the text — but prefer a released
+version when you have the choice. Released versions and what changed between them are listed in
+the [changelog](https://github.com/austin-putz/linear-models-in-animal-breeding/blob/main/CHANGELOG.md).
 
 ## License
 
@@ -302,7 +313,9 @@ The full breakdown of which files fall on which side is in the repository's [`LI
 
 ## Feedback and Contributions
 
-Found a typo, error, or have a suggestion? Please [open an issue](https://github.com/austin-putz/linear-models-in-animal-breeding/issues) on GitHub or submit a pull request. This book benefits from community input and we welcome contributions.
+A wrong number, a typo, a section you did not follow, an idea — each has a route, and the
+[Reporting Errors and Contributing](reporting.qmd) page at the end of the book says which is which.
+Every report is read, the fix goes into the next release, and reporters are credited.
 
 ## Acknowledgments
 

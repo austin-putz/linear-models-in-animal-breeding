@@ -1,0 +1,38 @@
+% ---------------------------------------------------------------------------
+% Accept the `alt` key on \includegraphics.
+%
+% Quarto emits \includegraphics[alt={...}] whenever a figure carries fig-alt,
+% which it should: the alt text is what a screen reader announces in the HTML
+% edition. But `alt` is not a defined graphics key, so LaTeX aborts with
+% "Package keyval Error: alt undefined" and the whole PDF build fails.
+%
+% Defining it as a no-op keeps the alt text working in HTML and makes LaTeX
+% ignore it, so figures can stay accessible without breaking print.
+% ---------------------------------------------------------------------------
+\makeatletter
+\providecommand\@gobbleopt[1]{}
+\define@key{Gin}{alt}{}
+\makeatother
+
+% ---------------------------------------------------------------------------
+% Print the version in the footer of every page.
+%
+% A reader reporting an error has to say which version they read, and a PDF
+% has no page margin link to tell them. \bookversion and \bookreleased come
+% from styles/version.tex, which tools/version.R writes from the git tag
+% before every render. The `plain` style is redefined too, because that is
+% what chapter-opening pages use.
+% ---------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{\footnotesize Version \bookversion\ (\bookreleased)}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\footnotesize Version \bookversion\ (\bookreleased)}%
+  \fancyfoot[R]{\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}

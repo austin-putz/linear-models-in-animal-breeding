@@ -19,8 +19,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Full history: tools/version.R reads the version from `git describe`,
+      # which needs the tags to be present.
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # tinytex: the book ships a PDF as well as the website, and without a
       # LaTeX install `quarto render` fails on the pdf format.
