@@ -49,7 +49,6 @@ Thumbs.db
 # Written by tools/version.R before every render, from the git tag. Never
 # edited by hand, never committed. (styles/version.tex is caught by *.tex.)
 /_variables.yml
-/_version-bibtex.md
 
 # Python (if used)
 __pycache__/

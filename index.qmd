@@ -1,3 +1,10 @@
+---
+# The version chunk below must run on every render, not be served from the
+# freeze, or the BibTeX block would show the version of whenever it last ran.
+execute:
+  freeze: false
+---
+
 # Welcome {.unnumbered}
 
 ::: {.callout-important .under-construction}
@@ -293,7 +300,29 @@ page, in both the website and the PDF. Cite it as:
 > Putz, Austin ({{< var year >}}). *Linear Models in Animal Breeding: A Worked Approach*, version
 > {{< var version >}}. https://austin-putz.github.io/linear-models-in-animal-breeding/
 
-{{< include _version-bibtex.md >}}
+```{r}
+#| label: version-bibtex
+#| echo: false
+#| results: asis
+#| cache: false
+# The BibTeX block needs the version as a literal, and shortcodes do not expand
+# inside fenced code, so it is written here from _variables.yml -- the file
+# tools/version.R regenerates from the git tag before every render.
+v <- yaml::read_yaml("_variables.yml")
+cat(
+  "```bibtex",
+  "@book{putz_linear_models,",
+  "  author    = {Putz, Austin},",
+  "  title     = {Linear Models in Animal Breeding: A Worked Approach},",
+  sprintf("  year      = {%s},", v$year),
+  sprintf("  version   = {%s},", v$version),
+  "  url       = {https://austin-putz.github.io/linear-models-in-animal-breeding/},",
+  sprintf("  note      = {Version %s, released %s}", v$version, v$released),
+  "}",
+  "```",
+  sep = "\n"
+)
+```
 
 A version ending in `-dev+` and a commit hash is a development build of the website between
 releases. It is still an exact reference — the hash identifies the text — but prefer a released

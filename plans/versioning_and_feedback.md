@@ -49,14 +49,19 @@ then the Welcome page keeps its *Under Construction — do not cite* callout, an
 ### 2.2 Where the version string comes from
 
 **The git tag, and nothing else.** `tools/version.R` runs before every render (`project:
-pre-render` in `_quarto.yml`), asks `git describe --tags --match 'v*' --long`, and writes three
+pre-render` in `_quarto.yml`), asks `git describe --tags --match 'v*' --long`, and writes two
 gitignored files that the render then reads:
 
 | File | Read by | Carries |
 |---|---|---|
 | `_variables.yml` | `{{< var version >}}`, `{{< var released >}}`, `{{< var year >}}` in the HTML footer and the Welcome page | version, release date, year, commit |
 | `styles/version.tex` | `styles/pdf-preamble.tex`, via `include-in-header` | `\bookversion`, `\bookreleased` for the PDF footer |
-| `_version-bibtex.md` | `{{< include >}}` on the Welcome page | the BibTeX block, because shortcodes do not expand inside fenced code |
+
+The BibTeX block on the Welcome page is written by an R chunk that reads `_variables.yml`, because
+shortcodes do not expand inside fenced code. It is **not** an `{{< include >}}`: Quarto resolves
+includes when it loads the book config, *before* pre-render runs, so an included file that
+pre-render generates does not exist on a fresh checkout and CI fails. Chunks execute after
+pre-render. `index.qmd` sets `freeze: false` so the chunk runs every render.
 
 What the reader sees:
 

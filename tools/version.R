@@ -8,12 +8,11 @@
 #   after a tag     v0.1.0-3-gabc1234 -> "0.1.0-dev+abc1234"  a development build
 #   before any tag                    -> "0.0.0-dev+abc1234"
 #
-# Three files come out of this, all gitignored, all regenerated each render:
-#   _variables.yml        {{< var version >}} and friends, for the HTML
+# Two files come out of this, both gitignored, both regenerated each render:
+#   _variables.yml        {{< var version >}} and friends, for the HTML; also
+#                         read by the R chunk that writes the BibTeX block on
+#                         the Welcome page
 #   styles/version.tex    \bookversion and \bookreleased, for the PDF footer
-#   _version-bibtex.md    the BibTeX block on the Welcome page. Shortcodes are
-#                         not expanded inside fenced code, so the numbers have
-#                         to be written into it literally.
 
 git <- function(...) {
   out <- suppressWarnings(system2("git", c(...), stdout = TRUE, stderr = FALSE))
@@ -58,18 +57,5 @@ writeLines(c(
   sprintf("\\newcommand{\\bookversion}{%s}", version),
   sprintf("\\newcommand{\\bookreleased}{%s}", released)
 ), "styles/version.tex")
-
-writeLines(c(
-  "```bibtex",
-  "@book{putz_linear_models,",
-  "  author    = {Putz, Austin},",
-  "  title     = {Linear Models in Animal Breeding: A Worked Approach},",
-  sprintf("  year      = {%s},", year),
-  sprintf("  version   = {%s},", version),
-  "  url       = {https://austin-putz.github.io/linear-models-in-animal-breeding/},",
-  sprintf("  note      = {Version %s, released %s}", version, released),
-  "}",
-  "```"
-), "_version-bibtex.md")
 
 cat(sprintf("book version %s (%s)\n", version, released))
